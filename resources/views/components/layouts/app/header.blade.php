@@ -6,7 +6,7 @@
 </head>
 
 <body class="min-h-screen bg-white dark:bg-zinc-800">
-    <flux:header container class="border-b border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-900">
+    <flux:header container sticky class="border-b border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-900">
         <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
 
         <a href="{{ route('home') }}" class="ms-2 me-5 flex items-center space-x-2 rtl:space-x-reverse lg:ms-0"
@@ -21,16 +21,26 @@
             <flux:navbar.item wire:href="route('home')" wire:current="request()->routeIs('home')" wire:navigate>
                 {{ __('Blog') }}
             </flux:navbar.item>
+
+            <flux:navbar.item wire:href="route('home')" wire:current="request()->routeIs('home')" wire:navigate>
+                {{ __('Services') }}
+            </flux:navbar.item>
+
+            <flux:navbar.item wire:href="route('home')" wire:current="request()->routeIs('home')" wire:navigate>
+                {{ __('Contact') }}
+            </flux:navbar.item>
         </flux:navbar>
 
         <flux:spacer />
 
         <flux:navbar class="me-1.5 space-x-0.5 rtl:space-x-reverse py-0!">
-            <flux:tooltip :content="__('Search')" position="bottom">
+            <flux:button variant="primary" icon="hand-raised" href="/en/contact"
+                class="bg-pink-800 border-pink-700 hover:bg-pink-700 hover:border-pink-600">Work With Me</flux:button>
+            {{-- <flux:tooltip :content="__('Search')" position="bottom">
                 <flux:navbar.item class="!h-10 [&>div>svg]:size-5" icon="magnifying-glass" href="#"
                     :label="__('Search')" />
-            </flux:tooltip>
-            <flux:separator vertical variant="subtle" />
+            </flux:tooltip> --}}
+            <flux:separator vertical variant="subtle" class="mx-3" />
             <flux:tooltip :content="__('YouTube')" position="bottom">
                 <flux:navbar.item class="!h-10 [&>div>svg]:size-5" icon="youtube"
                     href="https://www.youtube.com/janushelkjaer" target="_blank" :label="__('YouTube')" />
@@ -43,6 +53,12 @@
                 <flux:navbar.item class="h-10 max-lg:hidden [&>div>svg]:size-5" icon="book-open-text"
                     href="https://laravel.com/docs/starter-kits" target="_blank" label="Documentation" />
             </flux:tooltip> --}}
+
+            <flux:radio.group x-data variant="segmented" x-model="$flux.appearance" size="sm">
+                <flux:radio value="light" icon="sun" />
+                <flux:radio value="dark" icon="moon" />
+                <flux:radio value="system" icon="computer-desktop" />
+            </flux:radio.group>
         </flux:navbar>
 
         <!-- Desktop User Menu -->

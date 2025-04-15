@@ -38,8 +38,9 @@
             'services' => [
                 'type' => 'services',
                 'data' => [
-                    'title' => 'My Services',
-                    'subtitle' => 'Digital Designer & Developer',
+                    'preheader' => 'What I do',
+                    'heading' => 'My Services',
+                    'subheading' => 'Digital Designer & Developer',
                     'content' => 'I offer a range of services to help you create beautiful and functional websites.',
                 ],
             ],

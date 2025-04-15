@@ -1,4 +1,96 @@
-<div class=" py-24 sm:py-32 mt-32">
+<div class="bg-zinc-50 my-12 py-12">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="max-w-3xl pt-20 pb-32">
+            <h2 class="text-base font-semibold leading-7 text-indigo-600">{{ $attributes['info']['data']['heading'] }}
+            </h2>
+            <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Everything you need to
+                <strong>deploy</strong> your app
+            </p>
+        </div>
+
+        <div>
+
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+                <div class="flex-1">
+                    <flux:card class="h-full flex flex-col space-y-3">
+                        <img src="" alt="">
+                        <flux:heading>Workflow Templates</flux:heading>
+                        <flux:subheading>Templates for n8n, Zapier, Notion, </flux:subheading>
+                        <flux:spacer />
+                        <flux:separator />
+                        <div class="">
+                            <flux:button icon-trailing="arrow-right" variant="primary">Click Here</flux:button>
+                        </div>
+                    </flux:card>
+                </div>
+                <div class="flex-1">
+                    <flux:card class="h-full flex flex-col space-y-3">
+                        <flux:heading>Courses</flux:heading>
+                        <flux:subheading>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga facere
+                            tenetur doloremque veritatis deserunt.</flux:subheading>
+                        <flux:spacer />
+                        <flux:separator />
+                        <div class="">
+                            <flux:button icon-trailing="arrow-right" variant="primary">Click Here</flux:button>
+                        </div>
+                    </flux:card>
+                </div>
+                <div class="flex-1">
+                    <flux:card class="h-full flex flex-col space-y-3">
+                        <flux:heading>Products</flux:heading>
+                        <flux:subheading>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga facere
+                            tenetur doloremque veritatis deserunt.</flux:subheading>
+                        <flux:spacer />
+                        <flux:separator />
+                        <div class="">
+                            <flux:button icon-trailing="arrow-right" variant="primary">Click Here</flux:button>
+                        </div>
+                    </flux:card>
+                </div>
+                <div class="flex-1">
+                    <flux:card class="h-full flex flex-col space-y-3">
+                        <img src="" alt="">
+                        <flux:heading>Performance & UX Analyses</flux:heading>
+                        <flux:subheading>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga facere
+                            tenetur doloremque veritatis deserunt.</flux:subheading>
+                        <flux:spacer />
+                        <flux:separator />
+                        <div class="">
+                            <flux:button icon-trailing="arrow-right" variant="primary">Click Here</flux:button>
+                        </div>
+                    </flux:card>
+                </div>
+                <div class="flex-1">
+                    <flux:card class="h-full flex flex-col space-y-3">
+                        <flux:heading>Services</flux:heading>
+                        <flux:subheading>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga facere
+                            tenetur doloremque veritatis deserunt.</flux:subheading>
+                        <flux:spacer />
+                        <flux:separator />
+                        <div class="">
+                            <flux:button icon-trailing="arrow-right" variant="primary" href="/services">Click
+                                Here</flux:button>
+                        </div>
+                    </flux:card>
+                </div>
+                <div class="flex-1">
+                    <flux:card class="h-full flex flex-col space-y-3">
+                        <flux:heading>Design Templates</flux:heading>
+                        <flux:subheading>Webflow, Framer & Shopify</flux:subheading>
+                        <flux:spacer />
+                        <flux:separator />
+                        <div class="">
+                            <flux:button icon-trailing="arrow-right" variant="primary">Click Here</flux:button>
+                        </div>
+                    </flux:card>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{{-- <div class=" py-24 sm:py-32 mt-32">
     <div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
         <h2 class="text-center text-base/7 font-semibold text-indigo-600">Deploy faster</h2>
         <p
@@ -100,4 +192,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}

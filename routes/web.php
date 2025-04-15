@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\PostController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -11,6 +13,8 @@ Route::get('/', function () {
 //     ->middleware(['auth', 'verified'])
 //     ->name('dashboard');
 
+    Route::get('blog', [PostController::class, 'index'])->name('routes.posts');
+    Route::get('blog/{post}', [PostController::class, 'show'])->name('routes.post');
 
 Route::get('/{any?}', [PageController::class, 'show'])->where('any', '.*')->name('pages.show');
 
