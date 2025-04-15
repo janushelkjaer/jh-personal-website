@@ -26,7 +26,7 @@
             </svg>
             <rect width="100%" height="100%" stroke-width="0" fill="url(#1f932ae7-37de-4c0a-a8b0-a6e3b4d44b84)" />
         </svg> --}}
-        <div class="mx-auto max-w-7xl">
+        <div class="mx-auto max-w-7xl lg:px-8">
             <div
                 class="border rounded-lg shadow-lg relative min-h-[36rem] overflow-hidden grid grid-cols-1 lg:grid-cols-5 gap-4 bg-white">
                 <div class="col-span-3 ">
@@ -80,9 +80,9 @@
                     </div>
                 </div>
                 <div class="col-span-2 relative" aria-hidden="true">
-                    <div
+                    {{-- <div
                         class="size-[30rem] lg:size-[34rem] xl:size-[36rem] bg-yellow-400 rounded-full lg:-mr-24 lg:-mt-24 right-0 top-0 absolute">
-                    </div>
+                    </div> --}}
                     <div class="relative lg:absolute bottom-0 lg:right-0 z-10 w-full max-w-[24rem] ml-auto lg:ml-auto">
                         <img src="{{ asset('images/jh-002.png') }}" alt="Janus Helkjær"
                             class="w-full h-full object-cover">
@@ -205,19 +205,6 @@
 </div>
 @endif
 
-@if (1 == 1)
-@endif
-
-@if (1 == 1)
-    <div class="bg-white border border-zinc-200 shadow-inner w-full relative mt-48 py-24">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col items-center justify-center">
-                <h2 class="text-4xl font-bold "> Ideas aren't worth <span class="text-7xl">💩</span> unless they're
-                    executed.</h2>
-            </div>
-        </div>
-    </div>
-@endif
 @if ($style == 'hero_02')
     <div class="pb-12">
         <div

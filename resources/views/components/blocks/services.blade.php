@@ -1,10 +1,12 @@
-<div class="bg-zinc-50 my-12 py-12">
+<div class="bg-zinc-50 my-12 py-24">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
-        <div class="max-w-3xl pt-20 pb-32">
+        <div class="max-w-3xl pt-12 pb-12">
             <h2 class="text-base font-semibold leading-7 text-indigo-600">{{ $attributes['info']['data']['heading'] }}
             </h2>
-            <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Everything you need to
-                <strong>deploy</strong> your app
+            <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                {{ $attributes['info']['data']['subheading'] }}</p>
+            <p class="mt-6 text-lg leading-8 text-gray-600">
+                {{ $attributes['info']['data']['content'] }}
             </p>
         </div>
 

@@ -12,6 +12,17 @@
                     'image' => asset('images/hero.jpg'),
                 ],
             ],
+            'attention-seeker' => [
+                'type' => 'attention-seeker',
+                'data' => [
+                    'preheader' => 'Hello, I am Janus Helkjær',
+                    'heading' => 'Digital Designer & Developer',
+                    'subheading' => 'I create beautiful and functional websites.',
+                    'description' =>
+                        'I am a digital designer and developer with a passion for creating beautiful and functional websites.',
+                    'image' => asset('images/hero.jpg'),
+                ],
+            ],
             'about' => [
                 'type' => 'about',
                 'data' => [
@@ -40,7 +51,7 @@
                 'data' => [
                     'preheader' => 'What I do',
                     'heading' => 'My Services',
-                    'subheading' => 'Digital Designer & Developer',
+                    'subheading' => 'One-person Digital Marketing Agency',
                     'content' => 'I offer a range of services to help you create beautiful and functional websites.',
                 ],
             ],
