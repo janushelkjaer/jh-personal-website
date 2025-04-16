@@ -12,6 +12,15 @@
                     'image' => asset('images/hero.jpg'),
                 ],
             ],
+            'services' => [
+                'type' => 'services',
+                'data' => [
+                    'preheader' => 'What I do',
+                    'heading' => 'My Services',
+                    'subheading' => 'One-person Digital Marketing Agency',
+                    'content' => 'I offer a range of services to help you create beautiful and functional websites.',
+                ],
+            ],
             'attention-seeker' => [
                 'type' => 'attention-seeker',
                 'data' => [
@@ -46,15 +55,7 @@
                     ],
                 ],
             ],
-            'services' => [
-                'type' => 'services',
-                'data' => [
-                    'preheader' => 'What I do',
-                    'heading' => 'My Services',
-                    'subheading' => 'One-person Digital Marketing Agency',
-                    'content' => 'I offer a range of services to help you create beautiful and functional websites.',
-                ],
-            ],
+
             'projects' => [
                 'type' => 'projects',
                 'data' => [

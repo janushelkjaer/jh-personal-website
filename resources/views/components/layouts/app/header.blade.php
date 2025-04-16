@@ -5,7 +5,7 @@
     @include('partials.head')
 </head>
 
-<body class="min-h-screen bg-zinc-50 dark:bg-zinc-800">
+<body class="min-h-screen bg-white dark:bg-zinc-800">
     <flux:header container sticky class="border-b border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-900 z-50">
         <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
 
@@ -20,7 +20,8 @@
             <flux:navbar.item wire:href="route('home')" wire:current="request()->routeIs('home')" wire:navigate>
                 {{ __('Services') }}
             </flux:navbar.item>
-            <flux:navbar.item wire:href="route('home')" wire:current="request()->routeIs('home')" wire:navigate>
+            <flux:navbar.item :href="route('posts.index')" wire:current="request()->routeIs('posts.index')"
+                wire:navigate>
                 {{ __('Blog') }}
             </flux:navbar.item>
             <flux:navbar.item wire:href="route('home')" wire:current="request()->routeIs('home')" wire:navigate>
@@ -35,7 +36,8 @@
 
         <flux:navbar class="me-1.5 space-x-0.5 rtl:space-x-reverse py-0!">
             <flux:button variant="primary" icon="hand-raised" href="/en/contact"
-                class="bg-pink-800 border-pink-700 hover:bg-pink-700 hover:border-pink-600">Work With Me</flux:button>
+                class="bg-yellow-600 border-yellow-500 hover:bg-yellow-500 hover:border-yellow-400">Work With Me
+            </flux:button>
             {{-- <flux:tooltip :content="__('Search')" position="bottom">
                 <flux:navbar.item class="!h-10 [&>div>svg]:size-5" icon="magnifying-glass" href="#"
                     :label="__('Search')" />

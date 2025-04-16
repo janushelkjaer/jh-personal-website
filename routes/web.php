@@ -13,8 +13,8 @@ Route::get('/', function () {
 //     ->middleware(['auth', 'verified'])
 //     ->name('dashboard');
 
-    Route::get('blog', [PostController::class, 'index'])->name('routes.posts');
-    Route::get('blog/{post}', [PostController::class, 'show'])->name('routes.post');
+    Route::get('blog', [PostController::class, 'index'])->name('posts.index');
+    Route::get('blog/{post}', [PostController::class, 'show'])->name('posts.show');
 
 Route::get('/{any?}', [PageController::class, 'show'])->where('any', '.*')->name('pages.show');
 

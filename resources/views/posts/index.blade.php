@@ -24,7 +24,7 @@
                                 $publicFullUrl = isset($mediaItems[0]) ? $mediaItems[0]->getFullUrl() : '';
                             @endphp
                             <flux:card class="flex flex-col md:flex-row">
-                                <a href="{{ route('routes.post', $post->slug) }}"
+                                <a href="{{ route('posts.show', $post->slug) }}"
                                     class="block hover:opacity-75 transition-opacity duration-300 border-yellow-500 border-4 rounded shadow">
                                     <img src="{{ $publicFullUrl }}" alt="{{ $post->title }}"
                                         class="object-cover rounded shadow  h-48 w-64">
@@ -41,7 +41,7 @@
                                     </flux:subheading>
 
                                     <flux:button class="ml-auto mt-auto" icon-trailing="arrow-right"
-                                        href="{{ route('routes.post', $post->slug) }}">
+                                        href="{{ route('posts.show', $post->slug) }}">
                                         {{ __('navigation.read_post') }}
                                     </flux:button>
                                 </div>

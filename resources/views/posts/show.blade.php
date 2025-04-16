@@ -7,11 +7,32 @@
 
 
 
+    <flux:card>
+        <ul>
+            <li>
+                Title
+            </li>
+            <li>
+                Intro / anecdote
+            </li>
+            <li> What You Will Learn</li>
+            <li> Main Content (3-5 sections)</li>
+            <li> Concepts Explained</li>
+            <li> Examples of practical application</li>
+            <li> Key TakeAways (3-5)</li>
+            <li> Summary</li>
+            <li> CTA</li>
+            <li> Other Resources (internal links)</li>
+            <li> References</li>
+        </ul>
+    </flux:card>
 
 
 
 
     <flux:separator class="my-12" />
+
+
     @if (1 == 2)
         <div class="-mx-8 -mt-8 z-30 relative">
             <div>
@@ -95,7 +116,6 @@
 
             </div>
         </div>
-        <flux:separator />
     </div>
 
 
@@ -217,7 +237,7 @@
 
 
 
-
+    {{-- 
     <div class="bg-white px-6 py-32 lg:px-8">
 
 
@@ -341,5 +361,35 @@
             </div>
         </div>
     </div>
+
+     --}}
+
+
+    {{-- <div class="bg-white">
+        <div class="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
+            <div class="relative isolate overflow-hidden  px-6 py-24 text-center shadow-2xl sm:rounded-3xl sm:px-16">
+                <h2 class="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">Boost your
+                    productivity today</h2>
+                <p class="mx-auto mt-6 max-w-xl text-pretty text-lg/8 text-gray-300">Incididunt sint fugiat pariatur
+                    cupidatat consectetur sit cillum anim id veniam aliqua proident excepteur commodo do ea.</p>
+                <div class="mt-10 flex items-center justify-center gap-x-6">
+                    <a href="#"
+                        class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Get
+                        started</a>
+                    <a href="#" class="text-sm/6 font-semibold">Learn more <span
+                            aria-hidden="true">→</span></a>
+                </div>
+            </div>
+        </div>
+    </div> --}}
+
+    <!-- cta -->
+
+    <x-dynamic-component component="blocks.cta" :info="[]" />
+
+
+
+
+
 
     </x-app-layout>

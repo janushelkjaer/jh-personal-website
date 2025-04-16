@@ -1,7 +1,7 @@
-<div class="bg-zinc-50 my-12 py-24">
+<div class="bg-white my-12 -mx-8">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="max-w-3xl pt-12 pb-12">
-            <h2 class="text-base font-semibold leading-7 text-indigo-600">{{ $attributes['info']['data']['heading'] }}
+            <h2 class="text-base font-semibold leading-7 text-yellow-600">{{ $attributes['info']['data']['heading'] }}
             </h2>
             <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                 {{ $attributes['info']['data']['subheading'] }}</p>
@@ -12,7 +12,7 @@
 
         <div>
 
-            <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 bg-orange-100 p-6 rounded-xl">
                 <div class="flex-1">
                     <flux:card class="h-full flex flex-col space-y-3">
                         <img src="" alt="">
@@ -21,7 +21,7 @@
                         <flux:spacer />
                         <flux:separator />
                         <div class="">
-                            <flux:button icon-trailing="arrow-right" variant="primary">Click Here</flux:button>
+                            <flux:button icon-trailing="arrow-right">Click Here</flux:button>
                         </div>
                     </flux:card>
                 </div>
@@ -33,7 +33,7 @@
                         <flux:spacer />
                         <flux:separator />
                         <div class="">
-                            <flux:button icon-trailing="arrow-right" variant="primary">Click Here</flux:button>
+                            <flux:button icon-trailing="arrow-right">Click Here</flux:button>
                         </div>
                     </flux:card>
                 </div>
@@ -45,7 +45,7 @@
                         <flux:spacer />
                         <flux:separator />
                         <div class="">
-                            <flux:button icon-trailing="arrow-right" variant="primary">Click Here</flux:button>
+                            <flux:button icon-trailing="arrow-right">Click Here</flux:button>
                         </div>
                     </flux:card>
                 </div>
@@ -58,7 +58,7 @@
                         <flux:spacer />
                         <flux:separator />
                         <div class="">
-                            <flux:button icon-trailing="arrow-right" variant="primary">Click Here</flux:button>
+                            <flux:button icon-trailing="arrow-right">Click Here</flux:button>
                         </div>
                     </flux:card>
                 </div>
@@ -70,7 +70,7 @@
                         <flux:spacer />
                         <flux:separator />
                         <div class="">
-                            <flux:button icon-trailing="arrow-right" variant="primary" href="/services">Click
+                            <flux:button icon-trailing="arrow-right" href="/services">Click
                                 Here</flux:button>
                         </div>
                     </flux:card>
@@ -82,7 +82,7 @@
                         <flux:spacer />
                         <flux:separator />
                         <div class="">
-                            <flux:button icon-trailing="arrow-right" variant="primary">Click Here</flux:button>
+                            <flux:button icon-trailing="arrow-right">Click Here</flux:button>
                         </div>
                     </flux:card>
                 </div>

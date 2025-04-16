@@ -11,7 +11,70 @@
 @endphp
 
 @if ($style == 'hero_03')
-    <div class=" relative overflow-hidden">
+    <div class=" relative overflow-hidden bg-zinc-50 py-24 -mx-8 -mt-12">
+        <div class="mx-auto max-w-7xl lg:px-8">
+            <flux:card>
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-4">
+                    <div class="col-span-3 ">
+                        <div class="max-w-3xl  p-6 space-y-3">
+                            <h2 class="text-base font-semibold leading-7 text-pink-800">Using Tech As a Tool</h2>
+                            <p class="mt-2 text-4xl font-medium tracking-tight text-balance text-gray-950 sm:text-6xl ">
+                                I
+                                like to <strong class="underline">solve problems</strong>.
+                                I can help solve Yours.
+
+                            </p>
+                        </div>
+                        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 max-w-2xl p-6">
+                            <div class="col-span-1 ">
+                                <flux:card class="space-y-3 h-full relative z-20">
+                                    <div>
+                                        <flux:icon.bolt class="size-6" />
+                                    </div>
+                                    <div>
+                                        <flux:heading>Templates</flux:heading>
+                                        <flux:subheading>Templates for n8n, Zapier, Notion, </flux:subheading>
+                                    </div>
+                                    <flux:spacer />
+                                    <flux:separator />
+                                    <div class="">
+                                        <flux:button icon-trailing="arrow-right" variant="primary"
+                                            class="bg-pink-800 border-pink-700 hover:bg-pink-700 hover:border-pink-600">
+                                            View
+                                            Options
+                                        </flux:button>
+                                    </div>
+                                </flux:card>
+                            </div>
+                            <div class="col-span-1 ">
+                                <flux:card class="space-y-3 h-full relative z-20">
+                                    <div>
+                                        <flux:icon.bolt class="size-6" />
+                                    </div>
+                                    <div>
+                                        <flux:heading>Work With Me</flux:heading>
+                                        <flux:subheading>Templates for n8n, Zapier, Notion, </flux:subheading>
+                                    </div>
+                                    <flux:spacer />
+                                    <flux:separator />
+                                    <div class="">
+                                        <flux:button icon="hand-raised">Let's Work Together
+                                        </flux:button>
+                                    </div>
+                                </flux:card>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-span-2 relative -mb-6" aria-hidden="true">
+                        <img src="{{ asset('images/jh-002.png') }}" alt="Janus Helkjær"
+                            class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </flux:card>
+        </div>
+    </div>
+
+    <div class=" relative overflow-hidden bg-zinc-50 py-24 -mx-8 -mt-12">
         {{-- <svg class="absolute inset-x-0 top-0 -z-10 h-[64rem] w-full stroke-gray-200 [mask-image:radial-gradient(32rem_32rem_at_center,white,transparent)]"
             aria-hidden="true">
             <defs>
