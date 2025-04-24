@@ -15,6 +15,10 @@ class Post extends BaseModel
         'published_at'
     ];
 
+    protected $casts = [
+        'key_takeaways' => 'array',
+    ];
+
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');

@@ -22,6 +22,8 @@
 
 
     <div>
+        <label for="prompt">Post Prompt</label>
+        <input type="text" id="prompt" wire:model="prompt" class="border rounded p-2 mb-4 w-full">
         <button wire:click="generatePost">Generate Post</button>
     </div>
 

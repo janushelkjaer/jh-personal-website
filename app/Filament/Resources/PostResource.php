@@ -16,7 +16,10 @@ use Filament\Resources\Concerns\Translatable;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use App\Filament\BlockGroups\Properties;
 use App\Filament\BlockGroups\RichContent;
-
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\LinkColumn;
 class PostResource extends Resource
 {
     use Translatable;
@@ -30,15 +33,32 @@ class PostResource extends Resource
         return $form
             ->schema([
                 ...Properties::make($form),
+                Forms\Components\Textarea::make('intro')
+                    ->label('Intro')
+                    ->columnSpanFull(),
+
+                Forms\Components\Textarea::make('summary')
+                    ->label('Summary')
+                    ->columnSpanFull(),
+
+                Repeater::make('key_takeaways')
+                        ->schema([
+                            TextInput::make('heading')->required(),
+                            TextInput::make('text')->required(),
+                        ])
+                        ->columns(2)
+                        ->columnSpanFull(),
+
+                Forms\Components\MarkDownEditor::make('content')
+                    ->label('Content')
+                    ->columnSpanFull(),
                 RichContent::builder($form)->columnSpanFull(),
                 SpatieMediaLibraryFileUpload::make('featured_image')->collection('posts'),
                 // Forms\Components\TextInput::make('excerpt')
                 //     ->label('Excerpt')
                 //     ->maxLength(255),
 
-                Forms\Components\MarkDownEditor::make('content')
-                    ->label('Content')
-                    ->columnSpanFull()
+                
             ]);
     }
 
@@ -65,6 +85,7 @@ class PostResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\Action::make('view_frontend')->url(fn (Post $record) => route('posts.show', $record->slug))->openUrlInNewTab(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

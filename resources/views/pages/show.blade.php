@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-layouts.app title="{{ $page->title }}">
 
     <div class="flex flex-col  items-center w-full">
         @if ($page->content)
@@ -128,4 +128,4 @@
         </div>
     </div>
 
-</x-app-layout>
+</x-layouts.app>

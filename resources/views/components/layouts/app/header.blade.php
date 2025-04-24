@@ -20,16 +20,27 @@
             <flux:navbar.item wire:href="route('home')" wire:current="request()->routeIs('home')" wire:navigate>
                 {{ __('Services') }}
             </flux:navbar.item>
+
+            {{-- <flux:dropdown class="max-lg:hidden">
+                <flux:navbar.item icon:trailing="chevron-down">Products</flux:navbar.item>
+                <flux:navmenu>
+                    <flux:navmenu.item href="#">Courses</flux:navmenu.item>
+                    <flux:navmenu.item href="#">Templates</flux:navmenu.item>
+                    <flux:navmenu.item href="#">Books</flux:navmenu.item>
+                </flux:navmenu>
+            </flux:dropdown> --}}
             <flux:navbar.item :href="route('posts.index')" wire:current="request()->routeIs('posts.index')"
                 wire:navigate>
                 {{ __('Blog') }}
             </flux:navbar.item>
-            <flux:navbar.item wire:href="route('home')" wire:current="request()->routeIs('home')" wire:navigate>
+            <flux:navbar.item href="/about" wire:current="request()->routeIs('about')" wire:navigate>
                 {{ __('About') }}
             </flux:navbar.item>
-            <flux:navbar.item wire:href="route('home')" wire:current="request()->routeIs('home')" wire:navigate>
+            <flux:navbar.item href="/contact" wire:current="request()->routeIs('contact')" wire:navigate>
                 {{ __('Contact') }}
             </flux:navbar.item>
+
+
         </flux:navbar>
 
         <flux:spacer />
@@ -204,7 +215,6 @@
             </div>
         </footer>
     @endif
-
 
     @fluxScripts
 </body>

@@ -1,5 +1,6 @@
 @php
     $data = $attributes['info']['data'];
+
 @endphp
 
 @if ($data['items'] && count($data['items']) > 0)

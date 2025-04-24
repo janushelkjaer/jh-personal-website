@@ -77,6 +77,10 @@
                     ],
                 ],
             ],
+            'social-proof' => [
+                'type' => 'social-proof',
+                'data' => [],
+            ],
         ];
     @endphp
 
@@ -86,5 +90,8 @@
             <x-dynamic-component :component="'blocks.' . $blockComponent['type']" :info="$blockComponent" />
         </div>
     @endforeach
+
+
+
 
 </x-layouts.app>

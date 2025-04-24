@@ -1,3 +1,3 @@
-<section {{ $attributes }}>
+{{-- <section {{ $attributes }}>
     {{ Str::of($slot)->markdown()->toHtmlString() }}
-</section>
+</section> --}}

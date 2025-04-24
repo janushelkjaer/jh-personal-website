@@ -1,40 +1,23 @@
 <x-layouts.app title="{{ $post->title }}">
     @php
         $mediaItems = $post->getMedia('posts');
-        $publicFullUrl = isset($mediaItems[0]) ? $mediaItems[0]->getFullUrl() : '';
+        $publicFullUrl = isset($mediaItems[0])
+            ? $mediaItems[0]->getFullUrl()
+            : 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;w=1310&amp;h=873&amp;q=80&amp;facepad=3';
     @endphp
 
-
-
-
-    <flux:card>
-        <ul>
-            <li>
-                Title
-            </li>
-            <li>
-                Intro / anecdote
-            </li>
-            <li> What You Will Learn</li>
-            <li> Main Content (3-5 sections)</li>
-            <li> Concepts Explained</li>
-            <li> Examples of practical application</li>
-            <li> Key TakeAways (3-5)</li>
-            <li> Summary</li>
-            <li> CTA</li>
-            <li> Other Resources (internal links)</li>
-            <li> References</li>
-        </ul>
-    </flux:card>
-
-
-
-
-    <flux:separator class="my-12" />
-
+    <div class="py-3 -mt-8 -mx-8 bg-zinc-100">
+        <div class="max-w-7xl mx-auto px-8">
+            <flux:breadcrumbs>
+                <flux:breadcrumbs.item href="{{ route('home') }}" icon="home" />
+                <flux:breadcrumbs.item href="{{ route('posts.index') }}">Blog</flux:breadcrumbs.item>
+                <flux:breadcrumbs.item>{{ $post->title }}</flux:breadcrumbs.item>
+            </flux:breadcrumbs>
+        </div>
+    </div>
 
     @if (1 == 2)
-        <div class="-mx-8 -mt-8 z-30 relative">
+        <div class="-mx-8 -mt-8 z-30 relative ">
             <div>
                 <img class="h-32 w-full object-cover lg:h-48"
                     src="https://images.unsplash.com/photo-1444628838545-ac4016a5418a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
@@ -56,8 +39,16 @@
             </div>
         </div>
     @endif
-    <div class="bg-white">
-        <div class="mx-auto px-4 pb-16 sm:px-6 sm:pb-24 lg:max-w-7xl lg:px-8">
+
+
+
+
+
+
+
+
+    <div class="bg-zinc-50 -mx-8 shadow-inner border-b border-zinc-100">
+        <div class="mx-auto px-4 sm:px-6 py-12 lg:max-w-7xl lg:px-8">
             <!-- Product -->
             <div class="lg:grid lg:grid-cols-7 lg:grid-rows-1 lg:gap-x-8 lg:gap-y-10 xl:gap-x-16">
                 <!-- Product image -->
@@ -67,7 +58,6 @@
                         class="aspect-[4/3] w-full rounded-lg bg-gray-100 object-cover">
                 </div>
 
-                <!-- Product details -->
                 <div
                     class="mx-auto mt-14 max-w-2xl sm:mt-16 lg:col-span-3 lg:row-span-2 lg:row-end-2 lg:mt-0 lg:max-w-none">
                     <div class="flex flex-col-reverse">
@@ -84,30 +74,50 @@
 
                     </div>
 
-                    <p class="mt-6 text-gray-500">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Voluptates
-                        dolorum officiis iste, nesciunt sed facere nulla magni saepe animi laudantium natus
-                        accusantium,
-                        tempore quia repudiandae dolorem a. Perferendis, excepturi deleniti?</p>
+                    <flux:text class="py-3">
+                        {!! nl2br($post->intro) !!}
+                    </flux:text>
 
-                    <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
+                    {{-- <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
                         <button type="button"
                             class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">Pay
                             $220</button>
                         <button type="button"
                             class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-50 px-8 py-3 text-base font-medium text-indigo-700 hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">Preview</button>
-                    </div>
+                    </div> --}}
 
-                    <div class="mt-10 border-t border-gray-200 pt-10">
-                        <h3 class="text-sm font-medium text-gray-900">Highlights</h3>
-                        <div class="mt-4">
-                            <ul role="list"
-                                class="list-disc space-y-1 pl-5 text-sm/6 text-gray-500 marker:text-gray-300">
-                                <li class="pl-2">200+ SVG icons in 3 unique styles</li>
-                                <li class="pl-2">Compatible with Figma, Sketch, and Adobe XD</li>
-                                <li class="pl-2">Drawn on 24 x 24 pixel grid</li>
-                            </ul>
-                        </div>
+                    <flux:separator class="my-6" variant="subtle" />
+
+                    <div class="">
+
+                        <flux:card>
+                            <flux:heading class="mb-3">Table Of Contents</flux:heading>
+                            <flux:text>
+                                <ul class="list-disc space-y-1 pl-3">
+                                    {{-- <li>
+                Title
+            </li>
+            <li>
+                Intro / anecdote
+            </li> --}}
+                                    <li><a href="#what-you-will-learn">What You Will Learn</a></li>
+                                    <li> Main Content (3-5 sections)
+                                        <ul class="list-disc pl-3 space-y-1">
+                                            <li> Concepts Explained</li>
+                                            <li> Examples of practical application</li>
+                                        </ul>
+
+                                    </li>
+
+                                    <li><a href="#key-takeaways">Key TakeAways</a></li>
+                                    <li> Summary</li>
+                                    <li> CTA</li>
+                                    <li> Other Resources (internal links)</li>
+                                    <li> References</li>
+                                </ul>
+                            </flux:text>
+                        </flux:card>
+
                     </div>
 
 
@@ -119,114 +129,18 @@
     </div>
 
 
-    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <figure class="mt-16">
-            <img class="aspect-video rounded-xl bg-gray-50 object-cover"
-                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;w=1310&amp;h=873&amp;q=80&amp;facepad=3"
-                alt="">
-            <figcaption class="mt-4 flex gap-x-2 text-sm/6 text-gray-500">
-                <svg class="mt-0.5 size-5 flex-none text-gray-300" viewBox="0 0 20 20" fill="currentColor"
-                    aria-hidden="true" data-slot="icon">
-                    <path fill-rule="evenodd"
-                        d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-7-4a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM9 9a.75.75 0 0 0 0 1.5h.253a.25.25 0 0 1 .244.304l-.459 2.066A1.75 1.75 0 0 0 10.747 15H11a.75.75 0 0 0 0-1.5h-.253a.25.25 0 0 1-.244-.304l.459-2.066A1.75 1.75 0 0 0 9.253 9H9Z"
-                        clip-rule="evenodd"></path>
-                </svg>
-                Faucibus commodo massa rhoncus, volutpat.
-            </figcaption>
-        </figure>
-    </div>
+
+    <x-dynamic-component component="blocks.what-you-will-learn" :info="[]" />
 
 
-    <div class="overflow-hidden bg-white py-24 sm:py-32">
-        <div class="mx-auto max-w-7xl md:px-6 lg:px-8">
-            <div class="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
-                <div class="px-6 lg:px-0 lg:pr-4 lg:pt-4">
-                    <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
-                        <h2 class="text-base/7 font-semibold text-yellow-00">Deploy faster</h2>
-                        <h1 class="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-                            {{ $post->title }}</h1>
-                        <p class="mt-6 text-lg/8 text-gray-600">{{ $post->intro }}
-                        </p>
 
-
-                        <dl class="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none">
-                            <div class="relative pl-9">
-                                <dt class="inline font-semibold text-gray-900">
-                                    <svg class="absolute left-1 top-1 size-5 text-yellow-600" viewBox="0 0 20 20"
-                                        fill="currentColor" aria-hidden="true" data-slot="icon">
-                                        <path fill-rule="evenodd"
-                                            d="M5.5 17a4.5 4.5 0 0 1-1.44-8.765 4.5 4.5 0 0 1 8.302-3.046 3.5 3.5 0 0 1 4.504 4.272A4 4 0 0 1 15 17H5.5Zm3.75-2.75a.75.75 0 0 0 1.5 0V9.66l1.95 2.1a.75.75 0 1 0 1.1-1.02l-3.25-3.5a.75.75 0 0 0-1.1 0l-3.25 3.5a.75.75 0 1 0 1.1 1.02l1.95-2.1v4.59Z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                    Push to deploy.
-                                </dt>
-                                <dd class="inline">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores
-                                    impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.
-                                </dd>
-                            </div>
-                            <div class="relative pl-9">
-                                <dt class="inline font-semibold text-gray-900">
-                                    <svg class="absolute left-1 top-1 size-5 text-yellow-600" viewBox="0 0 20 20"
-                                        fill="currentColor" aria-hidden="true" data-slot="icon">
-                                        <path fill-rule="evenodd"
-                                            d="M10 1a4.5 4.5 0 0 0-4.5 4.5V9H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-.5V5.5A4.5 4.5 0 0 0 10 1Zm3 8V5.5a3 3 0 1 0-6 0V9h6Z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                    SSL certificates.
-                                </dt>
-                                <dd class="inline">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-                                    lorem cupidatat commodo.</dd>
-                            </div>
-                            <div class="relative pl-9">
-                                <dt class="inline font-semibold text-gray-900">
-                                    <svg class="absolute left-1 top-1 size-5 text-yellow-600" viewBox="0 0 20 20"
-                                        fill="currentColor" aria-hidden="true" data-slot="icon">
-                                        <path
-                                            d="M4.632 3.533A2 2 0 0 1 6.577 2h6.846a2 2 0 0 1 1.945 1.533l1.976 8.234A3.489 3.489 0 0 0 16 11.5H4c-.476 0-.93.095-1.344.267l1.976-8.234Z" />
-                                        <path fill-rule="evenodd"
-                                            d="M4 13a2 2 0 1 0 0 4h12a2 2 0 1 0 0-4H4Zm11.24 2a.75.75 0 0 1 .75-.75H16a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-.75.75h-.01a.75.75 0 0 1-.75-.75V15Zm-2.25-.75a.75.75 0 0 0-.75.75v.01c0 .414.336.75.75.75H13a.75.75 0 0 0 .75-.75V15a.75.75 0 0 0-.75-.75h-.01Z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                    Database backups.
-                                </dt>
-                                <dd class="inline">Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et
-                                    magna sit morbi lobortis.</dd>
-                            </div>
-                        </dl>
-                    </div>
-                </div>
-                <div class="sm:px-6 lg:px-0">
-                    <div
-                        class="relative isolate overflow-hidden bg-yellow-500 px-6 pt-8 sm:mx-auto sm:max-w-2xl sm:rounded-3xl sm:pl-16 sm:pr-0 sm:pt-16 lg:mx-0 lg:max-w-none max-h-[48rem]">
-                        <div class="absolute -inset-y-px -left-3 -z-10 w-full origin-bottom-left skew-x-[-30deg] bg-indigo-100 opacity-20 ring-1 ring-inset ring-white"
-                            aria-hidden="true"></div>
-                        <div class="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
-                            <img src="{{ $publicFullUrl }}" alt="Product screenshot" width="2432" height="1442"
-                                class="-mb-12 w-[57rem] max-w-none rounded-tl-xl bg-gray-800 ring-1 ring-white/10 ">
-                        </div>
-                        <div class="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/10 sm:rounded-3xl"
-                            aria-hidden="true"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div>
-        <x-markdown class="prose prose-lg mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-            {{ $post->body }}
-        </x-markdown>
-    </div>
-
-
-    <div class="flex justify-center w-full">
+    <div class="flex flex-col justify-center items-center max-w-3xl mx-auto">
         @if ($post->content)
 
             @foreach ($post->content as $key => $blockComponent)
-                <div>
+                {{-- <div>
                     {{ $blockComponent['type'] }}
-                </div>
+                </div> --}}
                 <div class="py-1 w-full">
                     <x-dynamic-component :component="'blocks.' . $blockComponent['type']" :info="$blockComponent" />
                 </div>
@@ -236,6 +150,59 @@
     </div>
 
 
+    <x-dynamic-component component="blocks.key_takeaways" :info="['data' => $post->key_takeaways]" />
+
+
+    {{--  --}}
+
+    {{-- <div class="py-12 lg:py-24">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="pb-6">
+                <flux:heading><span class="text-4xl">Examples of practical application</span></flux:heading>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- main content -->
+    <div>
+        @for ($i = 0; $i < 5; $i++)
+            <div class="py-12 lg:py-24 {{ $i % 2 == 0 ? 'bg-zinc-50' : '' }}">
+
+                <div class="max-w-5xl mx-auto space-y-6">
+                    <div>
+                        <flux:heading size="xl">Heading For Section</flux:heading>
+                    </div>
+
+                    <div>
+                        <figure class="mt-16 mx-auto">
+                            <img class="aspect-video rounded-xl bg-gray-50 object-cover"
+                                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;w=1310&amp;h=873&amp;q=80&amp;facepad=3"
+                                alt="">
+                            <figcaption class="mt-4 flex gap-x-2 text-sm/6 text-gray-500">
+                                <svg class="mt-0.5 size-5 flex-none text-gray-300" viewBox="0 0 20 20"
+                                    fill="currentColor" aria-hidden="true" data-slot="icon">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-7-4a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM9 9a.75.75 0 0 0 0 1.5h.253a.25.25 0 0 1 .244.304l-.459 2.066A1.75 1.75 0 0 0 10.747 15H11a.75.75 0 0 0 0-1.5h-.253a.25.25 0 0 1-.244-.304l.459-2.066A1.75 1.75 0 0 0 9.253 9H9Z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                Faucibus commodo massa rhoncus, volutpat.
+                            </figcaption>
+                        </figure>
+                    </div>
+
+
+                    <div>
+                        <flux:heading size="lg">Practical Example</flux:heading>
+                    </div>
+                </div>
+
+            </div>
+        @endfor
+    </div> --}}
+
+
+    {{-- <x-dynamic-component component="blocks.code-snippet" :info="[]" /> --}}
 
     {{-- 
     <div class="bg-white px-6 py-32 lg:px-8">
@@ -382,6 +349,20 @@
             </div>
         </div>
     </div> --}}
+
+    <!-- Examples of practical application -->
+
+
+    <div class="py-12 lg:py-24">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="pb-6">
+                <flux:heading><span class="text-4xl">Summary</span></flux:heading>
+                <flux:text>
+                    {{ $post->summary }}
+                </flux:text>
+            </div>
+        </div>
+    </div>
 
     <!-- cta -->
 
