@@ -10,10 +10,7 @@ class HeroSection extends BaseBlock
 {
     static function schema(Form $form)
     {
-        return [
-
-            // need to display mood, rooms, products, app screenshot, book cover, podcast cover, album cover, artwork, etc
-            Forms\Components\Select::make('style')->options([
+        $heroStyleOptions = [
                 'default' => 'Default',
                 'simple-centered' => 'Simple centered',
                 'split-with-screenshot-on-light' => 'Split with screenshot on light',
@@ -26,8 +23,8 @@ class HeroSection extends BaseBlock
                 // 'split-with-image-on-light' => 'Split with image on light',
                 // 'split-with-image-on-dark' => 'Split with image on dark',
                 //--
-                'app-screenshot-on-light' => 'With app screenshot on light',
-                'app-screenshot-on-dark' => 'With app screenshot on dark',
+                'app-screenshot-on-light' => 'App screenshot on light',
+                'app-screenshot-on-dark' => 'App screenshot on dark',
 
                 //
                 'phone-mockup' => 'Phone mockup on light',
@@ -35,21 +32,28 @@ class HeroSection extends BaseBlock
                 //
                 'split-with-image-on-light' => 'Split with image on light',
                 'split-with-image-on-dark' => 'Split with image on dark',
-                'with-angled-image-on-right-on-light' => 'With angled image on right on light',
-                'with-angled-image-on-right-on-dark' => 'With angled image on right on dark',
-                'with-image-tiles-on-light' => 'With image tiles on light',
-                'with-image-tiles-on-dark' => 'With image tiles on dark',
 
-                'with-offset-image-on-light' => 'With offset image on light',
-                'with-offset-image-on-dark' => 'With offset image on dark',
+                //
+                'angled-image-on-right' => 'Angled image on right',
+                //'angled-image-on-right-on-dark' => 'Angled image on right on dark',
+                //
+                'image-tiles' => 'Image tiles',
+                //
+                'offset-image' => 'Offset image',
 
                 // book cover
-                'book-cover-on-right' => 'Book cover on right',
-                'book-cover-on-left' => 'Book cover on left',
+                'book-cover' => 'Book cover',
 
 
 
-            ]),
+            ];
+
+        asort($heroStyleOptions);
+
+        return [
+
+            // need to display mood, rooms, products, app screenshot, book cover, podcast cover, album cover, artwork, etc
+            Forms\Components\Select::make('style')->options($heroStyleOptions),
             Forms\Components\Select::make('background_pattern')->options([
                 'none' => 'None',
             ]),
@@ -62,6 +66,12 @@ class HeroSection extends BaseBlock
 
             FileUpload::make('background_image')->image(),
             FileUpload::make('mockup_image')->image(),
+
+            FileUpload::make('image_tiles')
+            ->multiple()
+            ->reorderable()
+            ->panelLayout('grid'),
+
             Forms\Components\TextInput::make('hero_title'),
             Forms\Components\RichEditor::make('hero_content'),
             Forms\Components\TextArea::make('code_example'),

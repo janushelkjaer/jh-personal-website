@@ -31,7 +31,7 @@
                                 {!! $data['hero_content'] !!}
                             </div>
                         </div>
-                        <div class="mt-8 flex gap-3 p-6">
+                        <div class=" flex gap-3 p-6">
                             @foreach ($data['buttons'] as $button)
                                 <flux:button :variant="($button['variant'] == 'default') ? null: $button['variant']"
                                     :href="$button['url']" :icon-trailing="$button['icon']">
@@ -39,7 +39,7 @@
                                 </flux:button>
                             @endforeach
                         </div>
-                        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 max-w-2xl p-6">
+                        {{-- <div class="grid grid-cols-1 gap-4 md:grid-cols-2 max-w-2xl p-6">
                             <div class="col-span-1 ">
                                 <flux:card class="space-y-3 h-full relative z-20">
                                     <div>
@@ -78,7 +78,7 @@
                                     </div>
                                 </flux:card>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="col-span-1 relative -mb-6" aria-hidden="true">
                         <div

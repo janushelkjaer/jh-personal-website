@@ -12,7 +12,7 @@
                     <h1 class="text-balance text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">
                         {!! $data['hero_title'] !!}
                     </h1>
-                    <div class="mt-8 text-pretty text-lg font-medium text-gray-500 sm:text-xl/8">
+                    <div class="mt-8 prose">
                         {!! $data['hero_content'] !!}
                     </div>
                     <div class="mt-10 flex items-center justify-center gap-x-6">
