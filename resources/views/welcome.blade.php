@@ -3,8 +3,9 @@
     @php
         $blocks = [
             'hero' => [
-                'type' => 'hero',
+                'type' => 'hero_section',
                 'data' => [
+                    'style' => 'default',
                     'title' => 'Janus Helkjær',
                     'subtitle' => 'Digital Designer & Developer',
                     'description' =>

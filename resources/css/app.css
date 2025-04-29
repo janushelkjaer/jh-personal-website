@@ -79,3 +79,7 @@ html,
 body {
     scroll-padding-top: 150px;
 }
+
+pre.shiki {
+    @apply px-6 pt-6 pb-14;
+}

@@ -1,6 +1,15 @@
 <x-layouts.app :title="__('Blog')">
 
-    <div class="max-w-7xl mx-auto">
+    <div class="py-3 -mt-8 -mx-8 bg-zinc-100">
+        <div class="max-w-7xl mx-auto px-8">
+            <flux:breadcrumbs>
+                <flux:breadcrumbs.item href="{{ route('home') }}" icon="home" />
+                <flux:breadcrumbs.item>Blog</flux:breadcrumbs.item>
+            </flux:breadcrumbs>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto py-12">
         <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
             <div class="col-span-1">
                 <flux:navlist class="w-64">

@@ -21,14 +21,14 @@
                 {{ __('Services') }}
             </flux:navbar.item>
 
-            {{-- <flux:dropdown class="max-lg:hidden">
+            <flux:dropdown class="max-lg:hidden">
                 <flux:navbar.item icon:trailing="chevron-down">Products</flux:navbar.item>
                 <flux:navmenu>
                     <flux:navmenu.item href="#">Courses</flux:navmenu.item>
                     <flux:navmenu.item href="#">Templates</flux:navmenu.item>
-                    <flux:navmenu.item href="#">Books</flux:navmenu.item>
+                    <flux:navmenu.item href="/products/books/pangelfri">Books</flux:navmenu.item>
                 </flux:navmenu>
-            </flux:dropdown> --}}
+            </flux:dropdown>
             <flux:navbar.item :href="route('posts.index')" wire:current="request()->routeIs('posts.index')"
                 wire:navigate>
                 {{ __('Blog') }}

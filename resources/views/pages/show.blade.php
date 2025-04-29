@@ -1,5 +1,14 @@
 <x-layouts.app title="{{ $page->title }}">
 
+    <div class="py-3 -mt-8 -mx-8 bg-zinc-100">
+        <div class="max-w-7xl mx-auto px-8">
+            <flux:breadcrumbs>
+                <flux:breadcrumbs.item href="{{ route('home') }}" icon="home" />
+                <flux:breadcrumbs.item>{{ $page->title }}</flux:breadcrumbs.item>
+            </flux:breadcrumbs>
+        </div>
+    </div>
+
     <div class="flex flex-col  items-center w-full">
         @if ($page->content)
 
@@ -20,7 +29,8 @@
             <div class="bg-white py-24 sm:py-32">
                 <div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
                     <h2 class="text-base/7 font-semibold text-indigo-600">Deploy faster</h2>
-                    <p class="mt-2 max-w-lg text-pretty text-4xl font-semibold tracking-tight text-gray-950 sm:text-5xl">
+                    <p
+                        class="mt-2 max-w-lg text-pretty text-4xl font-semibold tracking-tight text-gray-950 sm:text-5xl">
                         Everything you need to deploy your app</p>
                     <div class="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6 lg:grid-rows-2">
                         <div class="relative lg:col-span-3">
