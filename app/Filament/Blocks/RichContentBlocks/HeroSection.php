@@ -27,7 +27,7 @@ class HeroSection extends BaseBlock
                 'app-screenshot-on-dark' => 'App screenshot on dark',
 
                 //
-                'phone-mockup' => 'Phone mockup on light',
+                'phone-mockup' => 'Phone mockup',
                 // 'with-phone-mockup-on-dark' => 'With phone mockup on dark',
                 //
                 'split-with-image-on-light' => 'Split with image on light',

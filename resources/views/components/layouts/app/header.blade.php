@@ -21,21 +21,28 @@
                 {{ __('Services') }}
             </flux:navbar.item>
 
-            <flux:dropdown class="max-lg:hidden">
+            {{-- <flux:dropdown class="max-lg:hidden">
                 <flux:navbar.item icon:trailing="chevron-down">Products</flux:navbar.item>
                 <flux:navmenu>
                     <flux:navmenu.item href="#">Courses</flux:navmenu.item>
                     <flux:navmenu.item href="#">Templates</flux:navmenu.item>
                     <flux:navmenu.item href="/products/books/pangelfri">Books</flux:navmenu.item>
                 </flux:navmenu>
-            </flux:dropdown>
+            </flux:dropdown> --}}
             <flux:navbar.item :href="route('posts.index')" wire:current="request()->routeIs('posts.index')"
                 wire:navigate>
                 {{ __('Blog') }}
             </flux:navbar.item>
-            <flux:navbar.item href="/about" wire:current="request()->routeIs('about')" wire:navigate>
+            {{-- <flux:navbar.item href="/about" wire:current="request()->routeIs('about')" wire:navigate>
                 {{ __('About') }}
-            </flux:navbar.item>
+            </flux:navbar.item> --}}
+            <flux:dropdown class="max-lg:hidden">
+                <flux:navbar.item icon:trailing="chevron-down">About</flux:navbar.item>
+                <flux:navmenu>
+                    <flux:navmenu.item href="/about">Profile</flux:navmenu.item>
+                    <flux:navmenu.item href="/about/my-stack">My Stack</flux:navmenu.item>
+                </flux:navmenu>
+            </flux:dropdown>
             <flux:navbar.item href="/contact" wire:current="request()->routeIs('contact')" wire:navigate>
                 {{ __('Contact') }}
             </flux:navbar.item>
@@ -46,9 +53,8 @@
         <flux:spacer />
 
         <flux:navbar class="me-1.5 space-x-0.5 rtl:space-x-reverse py-0!">
-            <flux:button variant="primary" icon="hand-raised" href="/en/contact"
-                class="bg-yellow-600 border-yellow-500 hover:bg-yellow-500 hover:border-yellow-400">Work With Me
-            </flux:button>
+            {{-- <flux:button variant="primary" icon="hand-raised" href="/en/contact">Work With Me
+            </flux:button> --}}
             {{-- <flux:tooltip :content="__('Search')" position="bottom">
                 <flux:navbar.item class="!h-10 [&>div>svg]:size-5" icon="magnifying-glass" href="#"
                     :label="__('Search')" />
@@ -155,7 +161,7 @@
 
 
     @if (1 == 1)
-        <footer class="bg-zinc-50 mt-32 w-full rounded">
+        <footer class="bg-neutral-100 w-full">
             <div class="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
                 {{-- <flux:separator subtle="1"  /> --}}
                 {{-- <nav class="-mb-6 flex flex-wrap justify-center gap-x-12 gap-y-3 text-sm/6" aria-label="Footer">
@@ -210,8 +216,7 @@
                 <p class="mt-10 text-center text-sm/6 text-gray-600">&copy; {{ date('Y') }} Janus Helkjær,
                     Inc. All
                     rights
-                    reserved.</p>
-                <p>CVR: DK 36373040</p>
+                    reserved. <span class="mx-1">|</span> CVR: DK 36373040</p>
             </div>
         </footer>
     @endif

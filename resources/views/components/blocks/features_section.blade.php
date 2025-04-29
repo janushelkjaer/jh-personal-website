@@ -1,7 +1,7 @@
 @php
     $data = $attributes['info']['data'];
 
-    $style = 'phone-mockup'; // $data['style'];
+    $style = $data['style'];
 
 @endphp
 
