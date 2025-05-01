@@ -9,7 +9,7 @@ class Post extends BaseModel
 {
     use HasTranslations;
 
-    protected $translatable = ['title', 'slug', 'content', 'short_description', 'seo', 'meta', 'body', 'excerpt'];
+    protected $translatable = ['title', 'slug', 'content', 'short_description', 'seo', 'meta', 'body', 'excerpt', 'summary', 'what_you_will_learn', 'key_takeaways', 'references'];
 
     protected $dates = [
         'published_at'
@@ -18,6 +18,7 @@ class Post extends BaseModel
     protected $casts = [
         'key_takeaways' => 'array',
         'published_at' => 'datetime',
+        'what_you_will_learn' => 'array',
     ];
 
     public function author()

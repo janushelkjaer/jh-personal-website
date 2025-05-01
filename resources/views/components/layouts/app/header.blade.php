@@ -29,11 +29,11 @@
                     <flux:navmenu.item href="/products/books/pangelfri">Books</flux:navmenu.item>
                 </flux:navmenu>
             </flux:dropdown> --}}
-            {{-- <flux:navbar.item :href="route('posts.index')" wire:current="request()->routeIs('posts.index')"
+            <flux:navbar.item :href="route('posts.index')" wire:current="request()->routeIs('posts.index')"
                 wire:navigate>
                 {{ __('Blog') }}
             </flux:navbar.item>
-            <flux:navbar.item href="/about" wire:current="request()->routeIs('about')" wire:navigate>
+            {{-- <flux:navbar.item href="/about" wire:current="request()->routeIs('about')" wire:navigate>
                 {{ __('About') }}
             </flux:navbar.item> --}}
             {{-- <flux:dropdown class="max-lg:hidden">

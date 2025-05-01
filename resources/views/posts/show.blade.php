@@ -4,9 +4,11 @@
         $publicFullUrl = isset($mediaItems[0])
             ? $mediaItems[0]->getFullUrl()
             : 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;w=1310&amp;h=873&amp;q=80&amp;facepad=3';
+
+        $colors = ['lime', 'blue', 'red', 'green', 'yellow', 'purple', 'orange', 'pink'];
     @endphp
 
-    <div class="py-3 -mt-8 -mx-8 bg-zinc-100">
+    <div class="py-3 -mt-8 -mx-8 bg-neutral-50 dark:bg-neutral-800 shadow-inner border-b border-neutral-100">
         <div class="max-w-7xl mx-auto px-8">
             <flux:breadcrumbs>
                 <flux:breadcrumbs.item href="{{ route('home') }}" icon="home" />
@@ -19,36 +21,51 @@
 
 
 
-    <div class="bg-zinc-50 -mx-8 shadow-inner border-b border-zinc-100">
+    <div class="bg-white -mx-8 shadow-inner border-b-4 border-neutral-100">
         <div class="mx-auto px-4 sm:px-6 py-12 lg:max-w-7xl lg:px-8">
             <!-- Product -->
             <div class="lg:grid lg:grid-cols-7 lg:grid-rows-1 lg:gap-x-8 lg:gap-y-10 xl:gap-x-16">
                 <!-- Product image -->
                 <div class="lg:col-span-4 lg:row-end-1">
-                    <img src="{{ $publicFullUrl }}"
-                        alt="Sample of 30 icons with friendly and fun details in outline, filled, and brand color styles."
-                        class="aspect-[4/3] w-full rounded-lg bg-gray-100 object-cover">
+                    <div
+                        class="w-full h-full shadow-inner p-3 rounded-lg bg-neutral-100  flex items-center justify-center">
+                        <div class="aspect-[16/9] rounded-lg  overflow-hidden">
+                            <img src="{{ $publicFullUrl }}" alt="{{ $post->title }}"
+                                class="h-full w-full rounded-lg bg-neutral-100 object-cover">
+                        </div>
+                    </div>
                 </div>
 
                 <div
                     class="mx-auto mt-14 max-w-2xl sm:mt-16 lg:col-span-3 lg:row-span-2 lg:row-end-2 lg:mt-0 lg:max-w-none">
                     <div class="flex flex-col-reverse">
                         <div class="mt-4">
-                            <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                            <div class="py-1 prose dark:prose-invert">
+                                <flux:text class="text-neutral-500 text-xs"><time
+                                        datetime="{{ $post->published_at->format('Y-m-d') }}">{{ $post->published_at->format('Y-m-d') }}</time>
+                                </flux:text>
+                            </div>
+                            <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl pb-1">
                                 {{ $post->title }}
                             </h1>
 
-                            <h2 id="information-heading" class="sr-only">Product information</h2>
-                            <p class="mt-2 text-sm text-gray-500">Last Updated <time
-                                    datetime="2021-06-05">{{ $post->updated_at->format('d-m-Y') }}</time></p>
+                            <div class="py-1">
+                                @foreach ($post->categories as $category)
+                                    <flux:badge size="sm" :color="$colors[array_rand($colors)]" as="button"
+                                        variant="pill" class="cursor-pointer" wire:navigate
+                                        href="{{ route('categories.show', ['category' => $category->slug]) }}">
+                                        {{ $category->title }}</flux:badge>
+                                @endforeach
+                            </div>
+
                         </div>
 
 
                     </div>
 
-                    <flux:text class="py-3">
-                        {!! nl2br($post->intro) !!}
-                    </flux:text>
+                    <div class="prose dark:prose-invert prose-sm py-3">
+                        {!! $post->intro !!}
+                    </div>
 
                     {{-- <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
                         <button type="button"
@@ -58,7 +75,7 @@
                             class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-50 px-8 py-3 text-base font-medium text-indigo-700 hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">Preview</button>
                     </div> --}}
 
-                    <flux:separator class="my-6" variant="subtle" />
+                    {{-- <flux:separator class="my-6" variant="subtle" />
 
                     <div class="">
 
@@ -66,12 +83,7 @@
                             <flux:heading class="mb-3">Table Of Contents</flux:heading>
                             <flux:text>
                                 <ul class="list-disc space-y-1 pl-3">
-                                    {{-- <li>
-                Title
-            </li>
-            <li>
-                Intro / anecdote
-            </li> --}}
+      
                                     <li><a href="#what-you-will-learn">What You Will Learn</a></li>
                                     <li> Main Content (3-5 sections)
                                         <ul class="list-disc pl-3 space-y-1">
@@ -90,7 +102,7 @@
                             </flux:text>
                         </flux:card>
 
-                    </div>
+                    </div> --}}
 
 
                 </div>
@@ -101,8 +113,12 @@
     </div>
 
 
+    @php
+        #dd($post->what_you_will_learn);
+    @endphp
 
-    <x-dynamic-component component="blocks.what-you-will-learn" :info="[]" />
+
+    <x-dynamic-component component="blocks.what-you-will-learn" :info="['data' => $post->what_you_will_learn]" />
 
 
 
@@ -131,19 +147,37 @@
 
 
     <div class="py-12 lg:py-24">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="pb-6">
-                <flux:heading><span class="text-4xl">Summary</span></flux:heading>
-                <flux:text>
-                    {{ $post->summary }}
-                </flux:text>
+        <div class="mx-auto max-w-4xl">
+            <div class="pb-6  border-t border-neutral-200 pt-6 bg-neutral-50 rounded-lg p-6">
+                <div class="prose dark:prose-invert ">
+                    <flux:heading size="xl" level="2">Summary</flux:heading>
+
+                    <x-markdown theme="material-theme">
+                        {!! $post->summary !!}
+                    </x-markdown>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="py-12 lg:py-24">
+        <div class="mx-auto max-w-4xl">
+            <div class="border-t border-neutral-200 p-6 w-full">
+                <div class="prose dark:prose-invert ">
+                    <flux:heading size="lg" level="3">References</flux:heading>
+
+                    <x-markdown theme="material-theme">
+                        {!! $post->references !!}
+                    </x-markdown>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- cta -->
 
-    <x-dynamic-component component="blocks.cta" :info="[]" />
+    {{-- <x-dynamic-component component="blocks.cta" :info="[]" /> --}}
 
 
 

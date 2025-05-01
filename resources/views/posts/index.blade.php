@@ -1,10 +1,16 @@
 <x-layouts.app :title="__('Blog')">
 
-    <div class="py-3 -mt-8 -mx-8 bg-zinc-100 dark:bg-neutral-800">
+    <div class="py-3 -mt-8 -mx-8 bg-neutral-50 dark:bg-neutral-800 shadow-inner border-b border-neutral-100">
         <div class="max-w-7xl mx-auto px-8">
             <flux:breadcrumbs>
                 <flux:breadcrumbs.item href="{{ route('home') }}" icon="home" />
-                <flux:breadcrumbs.item>Blog</flux:breadcrumbs.item>
+
+                @if (isset($category))
+                    <flux:breadcrumbs.item href="{{ route('posts.index') }}">Blog</flux:breadcrumbs.item>
+                    <flux:breadcrumbs.item>{{ $category->title }}</flux:breadcrumbs.item>
+                @else
+                    <flux:breadcrumbs.item>Blog</flux:breadcrumbs.item>
+                @endif
             </flux:breadcrumbs>
         </div>
     </div>
@@ -70,32 +76,7 @@
 
                     <div class="grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 ">
                         @foreach ($posts as $post)
-                            @php
-                                $mediaItems = $post->getMedia('posts');
-                                $publicFullUrl = isset($mediaItems[0]) ? $mediaItems[0]->getFullUrl() : '';
-
-                            @endphp
-
-                            <flux:card class="space-y-3 flex flex-col">
-                                <a href="{{ route('posts.show', $post->slug) }}"
-                                    class="relative w-full hover:opacity-80 transition-opacity duration-300">
-                                    <img src="{{ $publicFullUrl }}" alt=""
-                                        class="aspect-video w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]">
-                                    <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
-                                </a>
-                                <div class="flex-1 space-y-3 prose dark:prose-invert pb-3">
-                                    <span
-                                        class="text-xs text-gray-500">{{ $post->published_at ? $post->published_at->format('M d, Y') : '' }}</span>
-                                    <flux:heading>{{ $post->title }}</flux:heading>
-                                    <flux:text class="text-neutral-500 text-sm">{{ $post->excerpt }}</flux:text>
-                                </div>
-                                <div class="flex justify-start mt-auto align-bottom">
-                                    <flux:button icon-trailing="arrow-right" variant="primary"
-                                        href="{{ route('posts.show', $post->slug) }}">
-                                        {{ __('navigation.read_post') }}
-                                    </flux:button>
-                                </div>
-                            </flux:card>
+                            <x-blog-post-card :post="$post" />
                         @endforeach
                         {{-- @foreach ($posts as $key => $post)
                             @php

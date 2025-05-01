@@ -4,7 +4,7 @@
 @endphp
 
 @if ($items && count($items) > 0)
-    <div class="bg-neutral-50 py-12 lg:py-24 shadow-inner border border-neutral-200 rounded-lg max-w-4xl mx-auto">
+    <div class="bg-neutral-50 py-6 lg:py-6 shadow-inner border border-neutral-200 rounded-lg max-w-4xl mx-auto">
         <div class="mx-auto max-w-2xl ">
             <flux:heading size="lg" id="key-takeaways"><span class="font-bold">Key
                     Takeaways</span></flux:heading>

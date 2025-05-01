@@ -45,6 +45,13 @@ class PostResource extends Resource
                     ->label('Excerpt')
                     ->columnSpanFull(),
 
+                    Forms\Components\Actions::make([
+                        Forms\Components\Actions\Action::make('Generate excerpt')
+                        ->action(function (Forms\Get $get, Forms\Set $set) {
+                            $set('excerpt', str($get('intro'))->words(45, end: ''));
+                        }),
+                    ]),
+
                 Forms\Components\Textarea::make('summary')
                     ->label('Summary')
                     ->columnSpanFull(),
@@ -57,16 +64,33 @@ class PostResource extends Resource
                         ->columns(2)
                         ->columnSpanFull(),
 
-                Forms\Components\MarkDownEditor::make('content')
-                    ->label('Content')
-                    ->columnSpanFull(),
+                Repeater::make('what_you_will_learn')
+                        ->schema([
+                            TextInput::make('heading')->required(),
+                            TextInput::make('text')->required(),
+                        ])
+                        ->columns(2)
+                        ->columnSpanFull(),
+
+                // Forms\Components\MarkDownEditor::make('content')
+                //     ->label('Content')
+                //     ->columnSpanFull(),
                 RichContent::builder($form)->columnSpanFull(),
                 SpatieMediaLibraryFileUpload::make('featured_image')->collection('posts'),
                 // Forms\Components\TextInput::make('excerpt')
                 //     ->label('Excerpt')
                 //     ->maxLength(255),
 
-                
+                Forms\Components\Textarea::make('imagery_suggestions')
+                    ->label('Imagery Suggestions')
+                    ->columnSpanFull(),
+
+                Forms\Components\MarkdownEditor::make('references')
+                    ->label('References')
+                    ->columnSpanFull(),
+
+
+
             ]);
     }
 
@@ -75,7 +99,8 @@ class PostResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('featured_image'),
-                Tables\Columns\TextColumn::make('title'),
+                Tables\Columns\TextColumn::make('title')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('published_at')
                     ->dateTime()
                     ->sortable(),
@@ -93,7 +118,7 @@ class PostResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\Action::make('view_frontend')->url(fn (Post $record) => route('posts.show', $record->slug))->openUrlInNewTab(),
+                #Tables\Actions\Action::make('view_frontend')->url(fn (Post $record) => route('posts.show', $record->slug))->openUrlInNewTab(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

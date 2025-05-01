@@ -10,7 +10,10 @@ use Prism\Prism\Schema\ObjectSchema;
 use Prism\Prism\Schema\StringSchema;
 use Prism\Prism\Schema\ArraySchema;
 use Prism\Prism\Schema\NumberSchema;
-
+use App\Models\Post;
+use App\Models\Category;
+use Carbon\Carbon;
+use Illuminate\Support\Str;
 class PostMaker extends Page
 {
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
@@ -48,41 +51,27 @@ class PostMaker extends Page
             description: 'A blog post.',
             properties: [
                 new StringSchema('title', 'The title of the post'),
+                new StringSchema('slug', 'The slug of the post'),
                 new StringSchema('intro', 'The intro of the post'),
-                new StringSchema('what_you_will_learn', 'Key learnings of the post'),
+                new StringSchema('excerpt', 'The excerpt of the post'),
+                new ArraySchema(
+                    name: 'what_you_will_learn',
+                    description: 'Key learnings of the post',
+                    items: new ObjectSchema(
+                        name: 'key_learning',
+                        description: 'A key learning',
+                        properties: [
+                            new StringSchema('heading', 'The heading of the key learning'),
+                            new StringSchema('text', 'The content of the key learning in one sentence.'),
+                        ],
+                        requiredFields: ['heading', 'text'],
+                    )
+                ),
                 new StringSchema('category', 'The category of the post'),
                 new StringSchema('audience', 'The audience of the post'),
                 new StringSchema('difficulty', 'The difficulty of the post'),
                 new StringSchema('length', 'The length of the post'),
-                new ArraySchema(
-                    name: 'main_content',
-                    description: 'The main content of the post',
-                    items: new ObjectSchema(
-                        name: 'section',
-                        description: 'A detailed section of the post',
-                        properties: [
-                            new StringSchema('title', 'The title of the section'),
-                            new StringSchema('content', 'Section content'),
-                            new ArraySchema(
-                                name: 'subsections',
-                                description: 'Subsections of the section',
-                                items: new ObjectSchema(
-                                    name: 'subsection',
-                                    description: 'A subsection of the section',
-                                    properties: [
-                                        new StringSchema('title', 'The title of the subsection'),
-                                        new StringSchema('content', 'Subsection content'),
-                                        new StringSchema('imagery_suggestion', 'Imagery suggestion'),
-                                        new StringSchema('examples', 'Examples'),
-                                    ],
-                                    requiredFields: ['title', 'content'],
-                                )
-                            ),
-                        ],
-                        requiredFields: ['title', 'content'],
-                    )
-                ),
-
+                new StringSchema('main_content', 'The main content of the post, written in markdown.'),
                 new ArraySchema(
                     name: 'key_takeaways',
                     description: 'The key takeaways of the post',
@@ -90,17 +79,21 @@ class PostMaker extends Page
                         name: 'key_takeaway',
                         description: 'A key takeaway',
                         properties: [
-                            new StringSchema('title', 'The title of the key takeaway'),
-                            new StringSchema('content', 'Key takeaway content'),
+                            new StringSchema('heading', 'The heading of the key takeaway'),
+                            new StringSchema('text', 'Key takeaway content'),
                         ],
-                        requiredFields: ['title', 'content'],
+                        requiredFields: ['heading', 'text'],
                     )
                 ),
 
                 new StringSchema('summary', 'The summary of the post'),
 
+                new StringSchema('imagery_suggestions', 'Imagery suggestions for the post'),
+
+                new StringSchema('references', 'References used in the post, written in markdown.'),
+
             ],
-            requiredFields: ['title']
+            requiredFields: ['title', 'slug', 'intro', 'excerpt', 'category', 'audience', 'difficulty', 'length', 'main_content', 'key_takeaways', 'summary', 'imagery_suggestions', 'references']
         );
 
 
@@ -119,7 +112,46 @@ class PostMaker extends Page
             throw $th;
         }
 
-        dd($response);
+       # dd($response);
+
+       $structured = $response->structured;
+
+       #dd($structured);
+
+        $category = Category::firstOrCreate(['title' => $structured['category'], 'slug' => Str::slug($structured['category'])]);
+
+        $randomDateTime = Carbon::now()->subSeconds(rand(0, 365 * 24 * 60 * 60));
+
+        // '[{"type":"markdown_editor","data":{"content":"' . $structured['main_content'] . '"}}]'
+        $post = Post::create([
+            'title' => $structured['title'],
+            'slug' => $structured['slug'],
+            'intro' => $structured['intro'],
+            'excerpt' => $structured['excerpt'],
+            'content' => [
+                [
+                    'type' => 'markdown_editor',
+                    'data' => [
+                        'content' => $structured['main_content']
+                    ]
+                ]
+            ],
+            'summary' => $structured['summary'],
+            'imagery_suggestions' => $structured['imagery_suggestions'],
+            'references' => $structured['references'],
+            'key_takeaways' => $structured['key_takeaways'],
+            'what_you_will_learn' => $structured['what_you_will_learn'],
+            //'category_id' => $category->id,
+            // 'difficulty' => $this->difficulty,
+            // 'length' => $this->length,
+            // 'audience' => $this->audience,
+            'references' => $structured['references'],
+            'published_at' => $randomDateTime,
+        ]);
+
+        $post->categories()->attach($category);
+
+        dd($post);
 
         #$this->response = $response->text;
         #$factCategory = $response->structured;

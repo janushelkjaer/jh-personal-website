@@ -3,7 +3,7 @@
 @endphp
 
 <div class="max-w-7xl mx-auto">
-    <div class="max-w-4xl mx-auto">
+    <div class="">
         <div class="py-6 prose dark:prose-invert ">
             <x-markdown theme="material-theme">
                 {!! $data['content'] !!}

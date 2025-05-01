@@ -41,12 +41,15 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title'),
+                Tables\Columns\TextColumn::make('title')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('slug'),
-                Tables\Columns\TextColumn::make('content'),
-                Tables\Columns\TextColumn::make('seo'),
-                Tables\Columns\TextColumn::make('meta'),
-                Tables\Columns\TextColumn::make('description'),
+                // Tables\Columns\TextColumn::make('content'),
+                // Tables\Columns\TextColumn::make('seo'),
+                // Tables\Columns\TextColumn::make('meta'),
+                // Tables\Columns\TextColumn::make('description'),
+                Tables\Columns\TextColumn::make('posts_count')->counts('posts')->sortable(),
             ])
             ->filters([
                 //
@@ -58,7 +61,8 @@ class CategoryResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('title', 'asc');
     }
 
     public static function getRelations(): array
