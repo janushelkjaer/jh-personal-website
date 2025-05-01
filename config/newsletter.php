@@ -7,7 +7,7 @@ return [
      * You may use "log" or "null" to prevent calling the
      * API directly from your environment.
      */
-    'driver' => env('NEWSLETTER_DRIVER', Spatie\Newsletter\Drivers\MailcoachDriver::class),
+    'driver' => env('NEWSLETTER_DRIVER', Spatie\Newsletter\Drivers\MailChimpDriver::class),
 
     /**
      * These arguments will be given to the driver.

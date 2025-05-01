@@ -33,13 +33,13 @@
                     <flux:navmenu.item href="/products/books/pangelfri">Books</flux:navmenu.item>
                 </flux:navmenu>
             </flux:dropdown> --}}
-            {{-- <flux:navbar.item :href="route('posts.index')" wire:current="request()->routeIs('posts.index')"
+            <flux:navbar.item :href="route('posts.index')" wire:current="request()->routeIs('posts.index')"
                 wire:navigate>
                 {{ __('Blog') }}
-            </flux:navbar.item> --}}
-            {{-- <flux:navbar.item href="/about" wire:current="request()->routeIs('about')" wire:navigate>
+            </flux:navbar.item>
+            <flux:navbar.item href="/about" wire:current="request()->routeIs('about')" wire:navigate>
                 {{ __('About') }}
-            </flux:navbar.item> --}}
+            </flux:navbar.item>
             {{-- <flux:dropdown class="max-lg:hidden">
                 <flux:navbar.item icon:trailing="chevron-down">About</flux:navbar.item>
                 <flux:navmenu>
@@ -47,6 +47,9 @@
                     <flux:navmenu.item href="/about/my-stack">My Stack</flux:navmenu.item>
                 </flux:navmenu>
             </flux:dropdown> --}}
+            <flux:navbar.item href="/newsletter" wire:current="request()->routeIs('newsletter')" wire:navigate>
+                {{ __('Newsletter') }}
+            </flux:navbar.item>
             {{-- <flux:navbar.item href="/contact" wire:current="request()->routeIs('contact')" wire:navigate>
                 {{ __('Contact') }}
             </flux:navbar.item> --}}

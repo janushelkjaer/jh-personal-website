@@ -13,7 +13,7 @@
                 @foreach ($data['features'] as $feature)
                     <div class="flex flex-col">
                         <dt class="text-base/7 font-semibold text-gray-900">
-                            <div class="mb-6 flex size-10 items-center justify-center rounded-lg bg-indigo-600">
+                            <div class="mb-6 flex size-10 items-center justify-center rounded-lg bg-accent">
                                 <div class="size-6 text-white">
                                     <flux:icon name="{{ $feature['icon'] }}" variant="solid" class="size-6" />
                                 </div>
@@ -24,14 +24,17 @@
                             <p class="flex-auto">
                                 {!! $feature['description'] !!}
                             </p>
-                            <div class="mt-6">
-                                @foreach ($feature['buttons'] as $button)
-                                    <flux:button :variant="($button['variant'] == 'default') ? null: $button['variant']"
-                                        :href="$button['url']" :icon-trailing="$button['icon']">
-                                        {{ $button['label'] }}
-                                    </flux:button>
-                                @endforeach
-                            </div>
+                            @if (isset($feature['buttons']) && count($feature['buttons']) > 0)
+                                <div class="mt-6">
+                                    @foreach ($feature['buttons'] as $button)
+                                        <flux:button
+                                            :variant="($button['variant'] == 'default') ? null: $button['variant']"
+                                            :href="$button['url']" :icon-trailing="$button['icon']">
+                                            {{ $button['label'] }}
+                                        </flux:button>
+                                    @endforeach
+                                </div>
+                            @endif
                         </dd>
                     </div>
                 @endforeach
