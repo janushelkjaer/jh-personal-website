@@ -3,7 +3,7 @@
         $mediaItems = $post->getMedia('posts');
         $publicFullUrl = isset($mediaItems[0])
             ? $mediaItems[0]->getFullUrl()
-            : 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;w=1310&amp;h=873&amp;q=80&amp;facepad=3';
+            : 'https://placehold.co/600x400?text=' . $post->title . '';
 
         $colors = ['lime', 'blue', 'red', 'green', 'yellow', 'purple', 'orange', 'pink'];
     @endphp
@@ -29,7 +29,7 @@
                 <div class="lg:col-span-4 lg:row-end-1">
                     <div
                         class="w-full h-full shadow-inner p-3 rounded-lg bg-neutral-100  flex items-center justify-center">
-                        <div class="aspect-[16/9] rounded-lg  overflow-hidden">
+                        <div class="aspect-[4/3] rounded-lg overflow-hidden">
                             <img src="{{ $publicFullUrl }}" alt="{{ $post->title }}"
                                 class="h-full w-full rounded-lg bg-neutral-100 object-cover">
                         </div>

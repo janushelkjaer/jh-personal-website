@@ -6,6 +6,10 @@
 </head>
 
 <body class="min-h-screen bg-white dark:bg-zinc-800">
+    <!-- Google Tag Manager (noscript) --><!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5SKMLGG" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <flux:header container sticky class="border-b border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-900 z-50">
         <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
 
@@ -29,10 +33,10 @@
                     <flux:navmenu.item href="/products/books/pangelfri">Books</flux:navmenu.item>
                 </flux:navmenu>
             </flux:dropdown> --}}
-            <flux:navbar.item :href="route('posts.index')" wire:current="request()->routeIs('posts.index')"
+            {{-- <flux:navbar.item :href="route('posts.index')" wire:current="request()->routeIs('posts.index')"
                 wire:navigate>
                 {{ __('Blog') }}
-            </flux:navbar.item>
+            </flux:navbar.item> --}}
             {{-- <flux:navbar.item href="/about" wire:current="request()->routeIs('about')" wire:navigate>
                 {{ __('About') }}
             </flux:navbar.item> --}}

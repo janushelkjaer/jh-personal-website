@@ -77,9 +77,13 @@ class PostResource extends Resource
                 //     ->columnSpanFull(),
                 RichContent::builder($form)->columnSpanFull(),
                 SpatieMediaLibraryFileUpload::make('featured_image')->collection('posts'),
-                // Forms\Components\TextInput::make('excerpt')
-                //     ->label('Excerpt')
-                //     ->maxLength(255),
+ Forms\Components\Actions::make([
+                        Forms\Components\Actions\Action::make('Generate Image')
+                        ->action(function (Forms\Get $get, Forms\Set $set) {
+                            $post = Post::find($get('id'));
+                            $post->generateFeaturedImage($get('title'));
+                        }),
+                    ]),
 
                 Forms\Components\Textarea::make('imagery_suggestions')
                     ->label('Imagery Suggestions')
