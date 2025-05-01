@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\PostResource;
 use App\Models\Post;
+use App\Models\Category;
+use App\Http\Resources\CategoryResource;
 
 class PostController extends Controller
 {
@@ -11,18 +13,21 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-
+        $categories = Category::all()->sortBy('title');
         #dd($posts);
         return view('posts.index', [
-            'posts' => PostResource::collection($posts)
+            'posts' => PostResource::collection($posts),
+            'categories' => CategoryResource::collection($categories)
         ]);
     }
     public function show($slug)
     {
         $currentLocale = app()->getLocale();
-        $post = Post::where('slug->' . $currentLocale, $slug)->firstOrFail();
+        $post = Post::where('slug->' . $currentLocale, $slug)->firstOrFail();   
+        $categories = Category::all();
         return view('posts.show', [
-            'post' => PostResource::make($post)
+            'post' => PostResource::make($post),
+            'categories' => CategoryResource::collection($categories)
         ]);
     }
 }

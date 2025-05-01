@@ -23,7 +23,7 @@ class ProfileSection extends BaseBlock
             Forms\Components\FileUpload::make('profile_image')->image(),
             Forms\Components\TextInput::make('profile_heading'),
             Forms\Components\TextInput::make('profile_subheading'),
-            Forms\Components\RichEditor::make('profile_content'),
+            Forms\Components\MarkdownEditor::make('profile_content'),
             Forms\Components\Repeater::make('profile_buttons')->schema([
                 Forms\Components\TextInput::make('label'),
                 Forms\Components\TextInput::make('url'),

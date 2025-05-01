@@ -37,6 +37,14 @@ class PostResource extends Resource
                     ->label('Intro')
                     ->columnSpanFull(),
 
+                Forms\Components\DatePicker::make('published_at')
+                    ->label('Published At')
+                    ->columnSpanFull(),
+
+                Forms\Components\Textarea::make('excerpt')
+                    ->label('Excerpt')
+                    ->columnSpanFull(),
+
                 Forms\Components\Textarea::make('summary')
                     ->label('Summary')
                     ->columnSpanFull(),
@@ -97,7 +105,7 @@ class PostResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\CategoriesRelationManager::class,
         ];
     }
 

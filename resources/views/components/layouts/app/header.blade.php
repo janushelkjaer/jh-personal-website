@@ -9,7 +9,7 @@
     <flux:header container sticky class="border-b border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-900 z-50">
         <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
 
-        <a href="{{ route('home') }}" class="ms-2 me-5 flex items-center space-x-2 rtl:space-x-reverse lg:ms-0"
+        <a href="{{ route('home') }}" class="ms-2 me-5 flex items-center space-x-2 rtl:space-x-reverse lg:ms-0 pt-2"
             wire:navigate>
             <x-app-logo />
         </a>
@@ -17,9 +17,9 @@
         <flux:navbar class="-mb-px max-lg:hidden">
 
 
-            <flux:navbar.item wire:href="route('home')" wire:current="request()->routeIs('home')" wire:navigate>
+            {{-- <flux:navbar.item href="/services" wire:current="request()->routeIs('services')" wire:navigate>
                 {{ __('Services') }}
-            </flux:navbar.item>
+            </flux:navbar.item> --}}
 
             {{-- <flux:dropdown class="max-lg:hidden">
                 <flux:navbar.item icon:trailing="chevron-down">Products</flux:navbar.item>
@@ -29,23 +29,23 @@
                     <flux:navmenu.item href="/products/books/pangelfri">Books</flux:navmenu.item>
                 </flux:navmenu>
             </flux:dropdown> --}}
-            <flux:navbar.item :href="route('posts.index')" wire:current="request()->routeIs('posts.index')"
+            {{-- <flux:navbar.item :href="route('posts.index')" wire:current="request()->routeIs('posts.index')"
                 wire:navigate>
                 {{ __('Blog') }}
             </flux:navbar.item>
-            {{-- <flux:navbar.item href="/about" wire:current="request()->routeIs('about')" wire:navigate>
+            <flux:navbar.item href="/about" wire:current="request()->routeIs('about')" wire:navigate>
                 {{ __('About') }}
             </flux:navbar.item> --}}
-            <flux:dropdown class="max-lg:hidden">
+            {{-- <flux:dropdown class="max-lg:hidden">
                 <flux:navbar.item icon:trailing="chevron-down">About</flux:navbar.item>
                 <flux:navmenu>
                     <flux:navmenu.item href="/about">Profile</flux:navmenu.item>
                     <flux:navmenu.item href="/about/my-stack">My Stack</flux:navmenu.item>
                 </flux:navmenu>
-            </flux:dropdown>
-            <flux:navbar.item href="/contact" wire:current="request()->routeIs('contact')" wire:navigate>
+            </flux:dropdown> --}}
+            {{-- <flux:navbar.item href="/contact" wire:current="request()->routeIs('contact')" wire:navigate>
                 {{ __('Contact') }}
-            </flux:navbar.item>
+            </flux:navbar.item> --}}
 
 
         </flux:navbar>
@@ -53,17 +53,22 @@
         <flux:spacer />
 
         <flux:navbar class="me-1.5 space-x-0.5 rtl:space-x-reverse py-0!">
-            {{-- <flux:button variant="primary" icon="hand-raised" href="/en/contact">Work With Me
+            {{-- <flux:button variant="primary" icon="hand-raised" href="/contact">Work With Me
             </flux:button> --}}
             {{-- <flux:tooltip :content="__('Search')" position="bottom">
                 <flux:navbar.item class="!h-10 [&>div>svg]:size-5" icon="magnifying-glass" href="#"
                     :label="__('Search')" />
             </flux:tooltip> --}}
             <flux:separator vertical variant="subtle" class="mx-3" />
-            <flux:tooltip :content="__('YouTube')" position="bottom">
+            <flux:tooltip :content="__('LinkedIn')" position="bottom">
+                <flux:navbar.item class="!h-10 [&>div>svg]:size-5" icon="linkedin"
+                    href="https://www.linkedin.com/in/janushelkjaer" target="_blank" :label="__('LinkedIn')" />
+            </flux:tooltip>
+
+            {{-- <flux:tooltip :content="__('YouTube')" position="bottom">
                 <flux:navbar.item class="!h-10 [&>div>svg]:size-5" icon="youtube"
                     href="https://www.youtube.com/janushelkjaer" target="_blank" :label="__('YouTube')" />
-            </flux:tooltip>
+            </flux:tooltip> --}}
             {{-- <flux:tooltip :content="__('Repository')" position="bottom">
                 <flux:navbar.item class="h-10 max-lg:hidden [&>div>svg]:size-5" icon="folder-git-2"
                     href="https://github.com/laravel/livewire-starter-kit" target="_blank" :label="__('Repository')" />
@@ -73,11 +78,16 @@
                     href="https://laravel.com/docs/starter-kits" target="_blank" label="Documentation" />
             </flux:tooltip> --}}
 
-            <flux:radio.group x-data variant="segmented" x-model="$flux.appearance" size="sm">
+            {{-- <flux:radio.group x-data variant="segmented" x-model="$flux.appearance" size="sm">
                 <flux:radio value="light" icon="sun" />
                 <flux:radio value="dark" icon="moon" />
                 <flux:radio value="system" icon="computer-desktop" />
-            </flux:radio.group>
+            </flux:radio.group> --}}
+            <flux:separator vertical variant="subtle" class="mx-3" />
+            <flux:tooltip :content="__('Dark Mode')" position="bottom">
+                <flux:button x-data x-on:click="$flux.dark = ! $flux.dark" icon="moon" variant="subtle"
+                    aria-label="Toggle dark mode" />
+            </flux:tooltip>
         </flux:navbar>
 
         <!-- Desktop User Menu -->
@@ -161,7 +171,7 @@
 
 
     @if (1 == 1)
-        <footer class="bg-neutral-100 w-full">
+        <footer class="bg-neutral-100 w-full -mt-8">
             <div class="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
                 {{-- <flux:separator subtle="1"  /> --}}
                 {{-- <nav class="-mb-6 flex flex-wrap justify-center gap-x-12 gap-y-3 text-sm/6" aria-label="Footer">
@@ -172,7 +182,7 @@
                         <a href="#" class="text-gray-600 hover:text-gray-900">Accessibility</a>
                         <a href="#" class="text-gray-600 hover:text-gray-900">Partners</a>
                     </nav> --}}
-                <div class="mt-16 flex justify-center gap-x-10">
+                {{-- <div class="mt-16 flex justify-center gap-x-10">
                     <a href="#" class="text-gray-600 hover:text-gray-800">
                         <span class="sr-only">Facebook</span>
                         <svg class="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -212,11 +222,13 @@
                                 clip-rule="evenodd" />
                         </svg>
                     </a>
-                </div>
+                </div> --}}
                 <p class="mt-10 text-center text-sm/6 text-gray-600">&copy; {{ date('Y') }} Janus Helkjær,
                     Inc. All
                     rights
-                    reserved. <span class="mx-1">|</span> CVR: DK 36373040</p>
+                    reserved.
+                    {{-- <span class="mx-1">|</span> CVR: DK 36373040 --}}
+                </p>
             </div>
         </footer>
     @endif

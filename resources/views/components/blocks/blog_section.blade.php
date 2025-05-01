@@ -64,7 +64,8 @@
                         </div>
                     </article> --}}
                     <flux:card class="space-y-3 flex flex-col">
-                        <a href="{{ route('routes.article', $post->slug) }}" class="relative w-full hover:opacity-80 transition-opacity duration-300">
+                        <a href="{{ route('posts.show', $post->slug) }}"
+                            class="relative w-full hover:opacity-80 transition-opacity duration-300">
                             <img src="{{ $publicFullUrl }}" alt=""
                                 class="aspect-video w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]">
                             <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
@@ -75,8 +76,8 @@
                             <flux:subheading>{{ $post->excerpt }}</flux:subheading>
                         </div>
                         <div class="flex justify-end mt-auto align-bottom">
-                            <flux:button variant="primary" icon="arrow-right" :href="route('routes.article', $post->slug)">
-                                {{ __('navigation.read_article') }}
+                            <flux:button icon-trailing="arrow-right" href="{{ route('posts.show', $post->slug) }}">
+                                {{ __('navigation.read_post') }}
                             </flux:button>
                         </div>
                     </flux:card>

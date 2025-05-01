@@ -20,7 +20,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-5 gap-4">
                     <div class="col-span-4 ">
                         <div class="max-w-3xl  p-6 space-y-3 prose dark:prose-invert">
-                            <h2 class="text-base font-semibold leading-7">Using Tech As a Tool</h2>
+                            {{-- <h2 class="text-base font-semibold leading-7"></h2> --}}
                             <p class="mt-2 text-4xl font-medium tracking-tight leading-[1.3] text-balance sm:text-6xl ">
                                 {!! $data['hero_title'] !!}
 
@@ -82,10 +82,19 @@
                     </div>
                     <div class="col-span-1 relative -mb-6" aria-hidden="true">
                         <div
-                            class="overflow-hidden size-[30rem] lg:size-[34rem] xl:size-[36rem] bg-neutral-50 dark:bg-neutral-900 rounded-full lg:-mr-32 lg:-mt-32 right-0 top-0 absolute flex items-center justify-center shadow-inner">
-                            <x-app-logo-icon class="size-64 rounded-full" />
+                            class="overflow-hidden size-[30rem] lg:size-[34rem] xl:size-[20rem] bg-neutral-50 dark:bg-neutral-900 rounded   right-0 top-0 absolute flex items-center justify-center shadow-inner">
+                            {{-- <x-app-logo-icon class="size-64 rounded-full" /> --}}
                             {{-- <img src="{{ asset('images/jh-002.png') }}" alt="Janus Helkjær"
                                 class="w-full h-full object-cover object-top relative z-10"> --}}
+                            {{-- <div
+                                class="ms-1 grid flex-1 text-start text-sm bg-neutral-100 py-2 px-2 rounded shadow-inner">
+                                <span class="mb-0.5 truncate leading-none font-semibold text-lg">jh</span>
+                            </div> --}}
+                            <span class="mb-0.5 truncate leading-none font-semibold text-8xl">jh</span>
+                            {{-- <div>
+                                <img src="{{ asset('images/jh-001.png') }}" alt="Janus Helkjær"
+                                    class="w-full h-full object-cover relative z-10">
+                            </div> --}}
                         </div>
                         {{-- <img src="{{ asset('images/jh-002.png') }}" alt="Janus Helkjær"
                             class="w-full h-full object-cover relative z-10"> --}}
