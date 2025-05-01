@@ -6,7 +6,7 @@
 @endphp
 
 @if ($style)
-    <div class="-mx-8">
+    <div>
         <x-dynamic-component :component="'blocks.hero.' . $style" :data="$data" />
     </div>
 @endif

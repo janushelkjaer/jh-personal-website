@@ -7,6 +7,9 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CategoryController;
 
+
+require __DIR__.'/auth.php';
+
 Route::get('/', [PageController::class, 'show'])->name('home');
 
 // Route::view('dashboard', 'dashboard')
@@ -25,4 +28,4 @@ Route::get('/services/{service}', [ServiceController::class, 'show'])->name('ser
 Route::get('/{any?}', [PageController::class, 'show'])->where('any', '.*')->name('pages.show');
 
 
-require __DIR__.'/auth.php';
+

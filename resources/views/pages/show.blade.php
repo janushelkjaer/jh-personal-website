@@ -1,13 +1,15 @@
 <x-layouts.app title="{{ $page->title }}">
 
-    <div class="py-3 -mt-8 -mx-8 bg-zinc-100 dark:bg-neutral-800">
-        <div class="max-w-7xl mx-auto px-8">
-            <flux:breadcrumbs>
-                <flux:breadcrumbs.item href="{{ route('home') }}" icon="home" />
-                <flux:breadcrumbs.item>{{ $page->title }}</flux:breadcrumbs.item>
-            </flux:breadcrumbs>
+    @if ($page->slug !== 'home')
+        <div class="py-3 -mt-8 -mx-8 bg-zinc-100 dark:bg-neutral-800">
+            <div class="max-w-7xl mx-auto px-8">
+                <flux:breadcrumbs>
+                    <flux:breadcrumbs.item href="{{ route('home') }}" icon="home" />
+                    <flux:breadcrumbs.item>{{ $page->title }}</flux:breadcrumbs.item>
+                </flux:breadcrumbs>
+            </div>
         </div>
-    </div>
+    @endif
 
     @if ($page->slug !== 'home')
         <div class="bg-white py-24 sm:py-32 dark:bg-neutral-900 -mx-8">
@@ -27,7 +29,7 @@
     @endif
 
 
-    <div class="flex flex-col  items-center  -mx-8">
+    <div class="flex flex-col  items-center -mx-6  xl:-mx-8">
         @if ($page->content)
 
 
