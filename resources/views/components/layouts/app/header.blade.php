@@ -113,7 +113,7 @@
 
     </flux:sidebar>
 
-    <div>
+    <div class="w-full">
         {{ $slot }}
     </div>
 
