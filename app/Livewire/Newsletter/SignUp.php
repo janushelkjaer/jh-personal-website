@@ -20,6 +20,11 @@ class SignUp extends Component
         return view('livewire.newsletter.sign-up');
     }
 
+    public function mount()
+    {
+        #dd(Newsletter::getMember('mig@selv.dk'));
+    }
+
     public function subscribe()
     {
         $this->validate([
@@ -41,7 +46,17 @@ class SignUp extends Component
                 $mergeFields['LNAME'] = $this->lastName;
             }
 
-            Newsletter::subscribeOrUpdate($this->email, $mergeFields);
+            // language
+             // dansk "6a0e584a20" => false
+            // english "aa4b61b3b9" => true
+
+            if(app()->getLocale() == 'da') {
+                $interests = ['6a0e584a20'=>true, 'aa4b61b3b9'=>false];
+            } else {
+                $interests = ['6a0e584a20'=>false, 'aa4b61b3b9'=>true];
+            }
+
+            Newsletter::subscribeOrUpdate($this->email, $mergeFields, 'subscribers', ['interests'=> $interests]);
             $this->signupSuccess = true;
         } catch (\Exception $e) {
             Log::error('Newsletter signup failed: ' . $e->getMessage());

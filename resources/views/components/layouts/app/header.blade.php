@@ -54,47 +54,19 @@
                 @endforeach
             @endif
 
-            {{-- <flux:navbar.item href="/services" wire:current="request()->routeIs('services')" wire:navigate>
-                {{ __('Services') }}
-            </flux:navbar.item> --}}
-
-            {{-- <flux:dropdown class="max-lg:hidden">
-                <flux:navbar.item icon:trailing="chevron-down">Products</flux:navbar.item>
-                <flux:navmenu>
-                    <flux:navmenu.item href="#">Courses</flux:navmenu.item>
-                    <flux:navmenu.item href="#">Templates</flux:navmenu.item>
-                    <flux:navmenu.item href="/products/books/pangelfri">Books</flux:navmenu.item>
-                </flux:navmenu>
-            </flux:dropdown> --}}
-
-            {{-- <flux:navbar.item href="/about" wire:current="request()->routeIs('about')" wire:navigate>
-                {{ __('About') }}
-            </flux:navbar.item> --}}
-            {{-- <flux:dropdown class="max-lg:hidden">
-                <flux:navbar.item icon:trailing="chevron-down">About</flux:navbar.item>
-                <flux:navmenu>
-                    <flux:navmenu.item href="/about">Profile</flux:navmenu.item>
-                    <flux:navmenu.item href="/about/my-stack">My Stack</flux:navmenu.item>
-                </flux:navmenu>
-            </flux:dropdown> --}}
-            {{-- <flux:navbar.item href="/newsletter" wire:current="request()->routeIs('newsletter')" wire:navigate>
-                {{ __('Newsletter') }}
-            </flux:navbar.item>
-            <flux:navbar.item href="/contact" wire:current="request()->routeIs('contact')" wire:navigate>
-                {{ __('Contact') }}
-            </flux:navbar.item> --}}
-
 
         </flux:navbar>
 
         <flux:spacer />
 
         <flux:navbar class="me-1.5 space-x-0.5 rtl:space-x-reverse py-0!">
-            <flux:button size="sm"
-                href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale() == 'en' ? 'da' : 'en') }}"
-                variant="filled" class="uppercase text-xs">
-                {{ app()->getLocale() == 'en' ? 'da' : 'en' }}
-            </flux:button>
+            @if (env('APP_ENV') == 'local')
+                <flux:button size="sm"
+                    href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale() == 'en' ? 'da' : 'en') }}"
+                    variant="filled" class="uppercase text-xs">
+                    {{ app()->getLocale() == 'en' ? 'da' : 'en' }}
+                </flux:button>
+            @endif
             {{-- <flux:button variant="primary" icon="hand-raised" href="/contact">Work With Me
             </flux:button> --}}
             {{-- <flux:tooltip :content="__('Search')" position="bottom">
@@ -111,20 +83,6 @@
                 <flux:navbar.item class="!h-10 [&>div>svg]:size-5" icon="youtube"
                     href="https://www.youtube.com/janushelkjaer" target="_blank" :label="__('YouTube')" />
             </flux:tooltip> --}}
-            {{-- <flux:tooltip :content="__('Repository')" position="bottom">
-                <flux:navbar.item class="h-10 max-lg:hidden [&>div>svg]:size-5" icon="folder-git-2"
-                    href="https://github.com/laravel/livewire-starter-kit" target="_blank" :label="__('Repository')" />
-            </flux:tooltip>
-            <flux:tooltip :content="__('Documentation')" position="bottom">
-                <flux:navbar.item class="h-10 max-lg:hidden [&>div>svg]:size-5" icon="book-open-text"
-                    href="https://laravel.com/docs/starter-kits" target="_blank" label="Documentation" />
-            </flux:tooltip> --}}
-
-            {{-- <flux:radio.group x-data variant="segmented" x-model="$flux.appearance" size="sm">
-                <flux:radio value="light" icon="sun" />
-                <flux:radio value="dark" icon="moon" />
-                <flux:radio value="system" icon="computer-desktop" />
-            </flux:radio.group> --}}
             <flux:separator vertical variant="subtle" class="mx-3" />
             <flux:tooltip :content="__('Dark Mode')" position="bottom">
                 <flux:button x-data x-on:click="$flux.dark = ! $flux.dark" icon="moon" variant="subtle"
@@ -132,46 +90,7 @@
             </flux:tooltip>
         </flux:navbar>
 
-        <!-- Desktop User Menu -->
-        {{-- <flux:dropdown position="top" align="end">
-            <flux:profile class="cursor-pointer" wire:initials="auth()->user()->initials()" />
 
-            <flux:menu>
-                <flux:menu.radio.group>
-                    <div class="p-0 text-sm font-normal">
-                        <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
-                            <span class="relative flex h-8 w-8 shrink-0 overflow-hidden rounded-lg">
-                                <span
-                                    class="flex h-full w-full items-center justify-center rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white">
-                                    {{ auth()->user()->initials() }}
-                                </span>
-                            </span>
-
-                            <div class="grid flex-1 text-start text-sm leading-tight">
-                                <span class="truncate font-semibold">{{ auth()->user()->name }}</span>
-                                <span class="truncate text-xs">{{ auth()->user()->email }}</span>
-                            </div>
-                        </div>
-                    </div>
-                </flux:menu.radio.group>
-
-                <flux:menu.separator />
-
-                <flux:menu.radio.group>
-                    <flux:menu.item wire:href="route('settings.profile')" icon="cog" wire:navigate>
-                        {{ __('Settings') }}</flux:menu.item>
-                </flux:menu.radio.group>
-
-                <flux:menu.separator />
-
-                <form method="POST" action="{{ route('logout') }}" class="w-full">
-                    @csrf
-                    <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle" class="w-full">
-                        {{ __('Log Out') }}
-                    </flux:menu.item>
-                </form>
-            </flux:menu>
-        </flux:dropdown> --}}
     </flux:header>
 
     <!-- Mobile Menu -->

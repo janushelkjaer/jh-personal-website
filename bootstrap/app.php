@@ -11,6 +11,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+
+        $middleware->web(append: [
+        //    \Spatie\ResponseCache\Middlewares\CacheResponse::class,
+        ]);
         $middleware->alias([
             /**** OTHER MIDDLEWARE ALIASES ****/
             'localize'                => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,
@@ -20,6 +24,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'localeViewPath'          => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
             // 'setLocale'               => \App\Http\Middleware\SetLocale::class,
             // 'CheckTLD'                => \App\Http\Middleware\CheckTLD::class,
+            'doNotCacheResponse' => \Spatie\ResponseCache\Middlewares\DoNotCacheResponse::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

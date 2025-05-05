@@ -11,11 +11,12 @@ use App\Models\Page;
 use App\Models\Post;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
-
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 class PageController extends Controller
 {
     public function show($slug = 'home')
     {
+
         $page = Page::where('slug->' . app()->currentLocale(), $slug)->firstOrFail();
 
         return view('pages.show', [
