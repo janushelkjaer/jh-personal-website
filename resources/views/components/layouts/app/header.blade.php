@@ -90,6 +90,11 @@
         <flux:spacer />
 
         <flux:navbar class="me-1.5 space-x-0.5 rtl:space-x-reverse py-0!">
+            <flux:button size="sm"
+                href="{{ LaravelLocalization::getLocalizedURL(app()->getLocale() == 'en' ? 'da' : 'en') }}"
+                variant="filled" class="uppercase text-xs">
+                {{ app()->getLocale() == 'en' ? 'da' : 'en' }}
+            </flux:button>
             {{-- <flux:button variant="primary" icon="hand-raised" href="/contact">Work With Me
             </flux:button> --}}
             {{-- <flux:tooltip :content="__('Search')" position="bottom">

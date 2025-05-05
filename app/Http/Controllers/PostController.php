@@ -12,7 +12,8 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::all();
+        $currentLocale = app()->getLocale();
+        $posts = Post::where('title->' . $currentLocale, '!=', null)->get();
         $categories = Category::all()->sortBy('title');
         #dd($posts);
         return view('posts.index', [

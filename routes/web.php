@@ -10,22 +10,42 @@ use App\Http\Controllers\CategoryController;
 
 require __DIR__.'/auth.php';
 
-Route::get('/', [PageController::class, 'show'])->name('home');
 
-// Route::view('dashboard', 'dashboard')
-//     ->middleware(['auth', 'verified'])
-//     ->name('dashboard');
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => ['localize']
+    ],
+    function () {
 
-Route::get('blog', [PostController::class, 'index'])->name('posts.index');
-#Route::get('blog/categories', [CategoryController::class, 'index'])->name('categories.index');
-Route::get('blog/categories', function () {
-    return redirect()->route('posts.index');
-})->name('categories.index');
-Route::get('blog/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
-Route::get('blog/{post}', [PostController::class, 'show'])->name('posts.show');
+        #dd(LaravelLocalization::getCurrentLocale());
 
-Route::get('/services/{service}', [ServiceController::class, 'show'])->name('services.show');
-Route::get('/{any?}', [PageController::class, 'show'])->where('any', '.*')->name('pages.show');
+        $locale = LaravelLocalization::getCurrentLocale();
 
+        if ($locale == 'da') {
+            Route::get('blog', [PostController::class, 'index'])->name('posts.index');
+             Route::get('blog/kategorier/{category}', [CategoryController::class, 'show'])->name('categories.show');
+            Route::get('blog/{post}', [PostController::class, 'show'])->name('posts.show');
+        } else {
+            Route::get('blog', [PostController::class, 'index'])->name('posts.index');
+               Route::get('blog/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
+               Route::get('blog/{post}', [PostController::class, 'show'])->name('posts.show');
+        }
+
+
+        Route::get('/', [PageController::class, 'show'])->name('home');
+
+        // Route::get('blog', [PostController::class, 'index'])->name('posts.index');
+        // #Route::get('blog/categories', [CategoryController::class, 'index'])->name('categories.index');
+        // Route::get('blog/categories', function () {
+        //     return redirect()->route('posts.index');
+        // })->name('categories.index');
+        // Route::get('blog/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
+        // Route::get('blog/{post}', [PostController::class, 'show'])->name('posts.show');
+
+        // Route::get('/services/{service}', [ServiceController::class, 'show'])->name('services.show');
+        Route::get('/{any?}', [PageController::class, 'show'])->where('any', '.*')->name('pages.show');
+    }
+);
 
 
