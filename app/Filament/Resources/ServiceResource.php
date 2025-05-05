@@ -22,6 +22,7 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Resources\Concerns\Translatable;
 use App\Filament\BlockGroups\Properties;
 use App\Filament\BlockGroups\RichContent;
+use Filament\Tables\Columns\TextColumn;
 
 class ServiceResource extends Resource
 {
