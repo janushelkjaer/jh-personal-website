@@ -20,35 +20,39 @@
     <flux:header container sticky class="border-b border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-900 z-50">
         <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
 
-        <a href="{{ route('home') }}" class="ms-2 me-5 flex items-center space-x-2 rtl:space-x-reverse lg:ms-0"
+        <a href="{{ route('home') }}"
+            class="ms-2 me-5 flex items-center space-x-2 rtl:space-x-reverse lg:ms-0 {{ $headerMenu && $headerMenu->menuItems && count($headerMenu->menuItems) > 0 ? '' : 'pt-2' }}"
             wire:navigate>
             <x-app-logo />
         </a>
 
         <flux:navbar class="-mb-px max-lg:hidden">
 
-            @foreach ($headerMenu->menuItems as $item)
-                @if ($item->children && count($item->children) > 0)
-                    <flux:dropdown class="max-lg:hidden">
-                        <flux:navbar.item icon:trailing="chevron-down">
+            @if ($headerMenu && $headerMenu->menuItems && count($headerMenu->menuItems) > 0)
+
+                @foreach ($headerMenu->menuItems as $item)
+                    @if ($item->children && count($item->children) > 0)
+                        <flux:dropdown class="max-lg:hidden">
+                            <flux:navbar.item icon:trailing="chevron-down">
+                                {{ $item->title }}
+                            </flux:navbar.item>
+                            <flux:navmenu>
+                                @foreach ($item->children as $child)
+                                    <flux:navmenu.item href="{{ $child->url }}"
+                                        wire:current="request()->routeIs($child->url)" wire:navigate>
+                                        {{ $child->title }}
+                                    </flux:navmenu.item>
+                                @endforeach
+                            </flux:navmenu>
+                        </flux:dropdown>
+                    @else
+                        <flux:navbar.item href="{{ $item->url }}" wire:current="request()->routeIs($item->url)"
+                            wire:navigate>
                             {{ $item->title }}
                         </flux:navbar.item>
-                        <flux:navmenu>
-                            @foreach ($item->children as $child)
-                                <flux:navmenu.item href="{{ $child->url }}"
-                                    wire:current="request()->routeIs($child->url)" wire:navigate>
-                                    {{ $child->title }}
-                                </flux:navmenu.item>
-                            @endforeach
-                        </flux:navmenu>
-                    </flux:dropdown>
-                @else
-                    <flux:navbar.item href="{{ $item->url }}" wire:current="request()->routeIs($item->url)"
-                        wire:navigate>
-                        {{ $item->title }}
-                    </flux:navbar.item>
-                @endif
-            @endforeach
+                    @endif
+                @endforeach
+            @endif
 
             {{-- <flux:navbar.item href="/services" wire:current="request()->routeIs('services')" wire:navigate>
                 {{ __('Services') }}
