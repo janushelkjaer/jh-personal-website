@@ -1,3 +1,10 @@
+@php
+    use Datlechin\FilamentMenuBuilder\Models\Menu;
+
+    $headerMenu = Menu::location('header-' . app()->getLocale());
+
+@endphp
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
 
@@ -20,6 +27,28 @@
 
         <flux:navbar class="-mb-px max-lg:hidden">
 
+            @foreach ($headerMenu->menuItems as $item)
+                @if ($item->children && count($item->children) > 0)
+                    <flux:dropdown class="max-lg:hidden">
+                        <flux:navbar.item icon:trailing="chevron-down">
+                            {{ $item->title }}
+                        </flux:navbar.item>
+                        <flux:navmenu>
+                            @foreach ($item->children as $child)
+                                <flux:navmenu.item href="{{ $child->url }}"
+                                    wire:current="request()->routeIs($child->url)" wire:navigate>
+                                    {{ $child->title }}
+                                </flux:navmenu.item>
+                            @endforeach
+                        </flux:navmenu>
+                    </flux:dropdown>
+                @else
+                    <flux:navbar.item href="{{ $item->url }}" wire:current="request()->routeIs($item->url)"
+                        wire:navigate>
+                        {{ $item->title }}
+                    </flux:navbar.item>
+                @endif
+            @endforeach
 
             {{-- <flux:navbar.item href="/services" wire:current="request()->routeIs('services')" wire:navigate>
                 {{ __('Services') }}
@@ -33,13 +62,10 @@
                     <flux:navmenu.item href="/products/books/pangelfri">Books</flux:navmenu.item>
                 </flux:navmenu>
             </flux:dropdown> --}}
-            <flux:navbar.item :href="route('posts.index')" wire:current="request()->routeIs('posts.index')"
-                wire:navigate>
-                {{ __('Blog') }}
-            </flux:navbar.item>
-            <flux:navbar.item href="/about" wire:current="request()->routeIs('about')" wire:navigate>
+
+            {{-- <flux:navbar.item href="/about" wire:current="request()->routeIs('about')" wire:navigate>
                 {{ __('About') }}
-            </flux:navbar.item>
+            </flux:navbar.item> --}}
             {{-- <flux:dropdown class="max-lg:hidden">
                 <flux:navbar.item icon:trailing="chevron-down">About</flux:navbar.item>
                 <flux:navmenu>
@@ -47,12 +73,12 @@
                     <flux:navmenu.item href="/about/my-stack">My Stack</flux:navmenu.item>
                 </flux:navmenu>
             </flux:dropdown> --}}
-            <flux:navbar.item href="/newsletter" wire:current="request()->routeIs('newsletter')" wire:navigate>
+            {{-- <flux:navbar.item href="/newsletter" wire:current="request()->routeIs('newsletter')" wire:navigate>
                 {{ __('Newsletter') }}
             </flux:navbar.item>
             <flux:navbar.item href="/contact" wire:current="request()->routeIs('contact')" wire:navigate>
                 {{ __('Contact') }}
-            </flux:navbar.item>
+            </flux:navbar.item> --}}
 
 
         </flux:navbar>

@@ -18,6 +18,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Filament\SpatieLaravelTranslatablePlugin;
+use Datlechin\FilamentMenuBuilder\FilamentMenuBuilderPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -55,6 +56,11 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->plugin(SpatieLaravelTranslatablePlugin::make()->defaultLocales(['en', 'da']));
+            ->plugin(SpatieLaravelTranslatablePlugin::make()->defaultLocales(['en', 'da']))
+            ->plugin(FilamentMenuBuilderPlugin::make()
+            ->addLocation('header-en', 'Header - EN')
+            ->addLocation('header-da', 'Header - DA')
+            ->addLocation('footer-en', 'Footer - EN')
+            ->addLocation('footer-da', 'Footer - DA'));
     }
 }
