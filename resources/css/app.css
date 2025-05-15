@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @import "../../vendor/livewire/flux/dist/flux.css";
+@import "../../vendor/kugleland/laravel-content-blocks/resources/dist/css/content-blocks.css";
 
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';

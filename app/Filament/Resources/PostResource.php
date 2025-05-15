@@ -14,8 +14,11 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Resources\Concerns\Translatable;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use App\Filament\BlockGroups\Properties;
-use App\Filament\BlockGroups\RichContent;
+
+// kugleland/laravel-content-blocks
+use Kugleland\LaravelContentBlocks\Filament\BlockGroups\Properties;
+use Kugleland\LaravelContentBlocks\Filament\BlockGroups\RichContent;
+
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -72,9 +75,9 @@ class PostResource extends Resource
                         ->columns(2)
                         ->columnSpanFull(),
 
-                // Forms\Components\MarkDownEditor::make('content')
-                //     ->label('Content')
-                //     ->columnSpanFull(),
+                Forms\Components\MarkDownEditor::make('body')
+                    ->label('Body')
+                    ->columnSpanFull(),
                 RichContent::builder($form)->columnSpanFull(),
                 SpatieMediaLibraryFileUpload::make('featured_image')->collection('posts'),
  Forms\Components\Actions::make([

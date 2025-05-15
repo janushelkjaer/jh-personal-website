@@ -20,8 +20,10 @@ use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\DatePicker;
 use Filament\Resources\Concerns\Translatable;
-use App\Filament\BlockGroups\Properties;
-use App\Filament\BlockGroups\RichContent;
+
+// kugleland/laravel-content-blocks
+use Kugleland\LaravelContentBlocks\Filament\BlockGroups\Properties;
+use Kugleland\LaravelContentBlocks\Filament\BlockGroups\RichContent;
 use Filament\Tables\Columns\TextColumn;
 
 class ServiceResource extends Resource

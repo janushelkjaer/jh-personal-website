@@ -64,7 +64,9 @@
                     </div>
 
                     <div class="prose dark:prose-invert prose-sm py-3">
-                        {!! $post->intro !!}
+                        <flux:text>
+                            {!! $post->intro !!}
+                        </flux:text>
                     </div>
 
                     {{-- <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
@@ -76,33 +78,41 @@
                     </div> --}}
 
                     {{-- <flux:separator class="my-6" variant="subtle" />
+                    --}}
 
                     <div class="">
 
                         <flux:card>
                             <flux:heading class="mb-3">Table Of Contents</flux:heading>
                             <flux:text>
-                                <ul class="list-disc space-y-1 pl-3">
-      
-                                    <li><a href="#what-you-will-learn">What You Will Learn</a></li>
-                                    <li> Main Content (3-5 sections)
-                                        <ul class="list-disc pl-3 space-y-1">
-                                            <li> Concepts Explained</li>
-                                            <li> Examples of practical application</li>
-                                        </ul>
+                                <ul class="list-disc space-y-2 pl-3">
+
+                                    <li><a
+                                            href="#what-you-will-learn">{{ app()->getLocale() == 'en' ? 'What You Will Learn' : 'Hvad du lærer i denne artikel' }}</a>
+                                    </li>
+                                    <li> <a href="#main-content"
+                                            class="">{{ app()->getLocale() == 'en' ? 'Main Content' : 'Hovedindhold' }}</a>
+                                        <ul class="list-disc pl-3 space-y-2 py-1" id="main-content-toc"></ul>
 
                                     </li>
 
-                                    <li><a href="#key-takeaways">Key TakeAways</a></li>
-                                    <li> Summary</li>
-                                    <li> CTA</li>
-                                    <li> Other Resources (internal links)</li>
-                                    <li> References</li>
+                                    <li><a
+                                            href="#key-takeaways">{{ app()->getLocale() == 'en' ? 'Key TakeAways' : 'Nøgleindsigter' }}</a>
+                                    </li>
+                                    <li> <a href="#summary">{{ app()->getLocale() == 'en' ? 'Summary' : 'Resumé' }}</a>
+                                    </li>
+                                    {{-- <li> CTA</li>
+                                    <li> Other Resources (internal links)</li> --}}
+                                    @if ($post->references)
+                                        <li> <a
+                                                href="#references">{{ app()->getLocale() == 'en' ? 'References' : 'Referencer' }}</a>
+                                        </li>
+                                    @endif
                                 </ul>
                             </flux:text>
                         </flux:card>
 
-                    </div> --}}
+                    </div>
 
 
                 </div>
@@ -113,24 +123,29 @@
     </div>
 
 
-    @php
-        #dd($post->what_you_will_learn);
-    @endphp
-
-
-    <x-dynamic-component component="blocks.what-you-will-learn" :info="['data' => $post->what_you_will_learn]" />
 
 
 
-    <div class="flex flex-col justify-center items-center max-w-3xl mx-auto">
-        @if ($post->content)
+    <x-kugleland-content-block component="blocks.what-you-will-learn" :info="['data' => $post->what_you_will_learn]" />
 
+
+
+    <div class="flex flex-col justify-center items-center max-w-3xl mx-auto" id="main-content">
+        @if ($post->body)
+
+            <div class="max-w-7xl mx-auto">
+                <div class="">
+                    <div class="py-12 prose dark:prose-invert max-w-3xl mx-auto">
+                        <x-markdown theme="material-theme">
+                            {!! $post->body !!}
+                        </x-markdown>
+                    </div>
+                </div>
+            </div>
+        @else
             @foreach ($post->content as $key => $blockComponent)
-                {{-- <div>
-                    {{ $blockComponent['type'] }}
-                </div> --}}
                 <div class="py-1 w-full">
-                    <x-dynamic-component :component="'blocks.' . $blockComponent['type']" :info="$blockComponent" />
+                    <x-kugleland-content-block :component="'blocks.' . $blockComponent['type']" :info="$blockComponent" />
                 </div>
             @endforeach
 
@@ -138,7 +153,7 @@
     </div>
 
 
-    <x-dynamic-component component="blocks.key_takeaways" :info="['data' => $post->key_takeaways]" />
+    <x-kugleland-content-block component="blocks.key_takeaways" :info="['data' => $post->key_takeaways]" />
 
 
 
@@ -150,7 +165,7 @@
         <div class="mx-auto max-w-4xl">
             <div class="pb-6  border-t border-neutral-200 pt-6 bg-neutral-50 rounded-lg p-6">
                 <div class="prose dark:prose-invert ">
-                    <flux:heading size="xl" level="2">Summary</flux:heading>
+                    <flux:heading size="xl" level="2" id="summary">Summary</flux:heading>
 
                     <x-markdown theme="material-theme">
                         {!! $post->summary !!}
@@ -161,27 +176,37 @@
     </div>
 
 
-    <div class="py-12 lg:py-24">
-        <div class="mx-auto max-w-4xl">
-            <div class="border-t border-neutral-200 p-6 w-full">
-                <div class="prose dark:prose-invert ">
-                    <flux:heading size="lg" level="3">References</flux:heading>
+    @if ($post->references)
+        <div class="py-12 lg:py-24">
+            <div class="mx-auto max-w-4xl">
+                <div class="border-t border-neutral-200 p-6 w-full">
+                    <div class="prose dark:prose-invert ">
+                        <flux:heading size="lg" level="3" id="references">References</flux:heading>
 
-                    <x-markdown theme="material-theme">
-                        {!! $post->references !!}
-                    </x-markdown>
+                        <x-markdown theme="material-theme">
+                            {!! $post->references !!}
+                        </x-markdown>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- cta -->
-
-    {{-- <x-dynamic-component component="blocks.cta" :info="[]" /> --}}
+    @endif
 
 
-
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const headings = Array.from(document.querySelector('#main-content').getElementsByTagName("h2"));
+            const mainContentToc = document.getElementById("main-content-toc");
+            headings.forEach(heading => {
+                const listElement = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = `#${heading.id}`;
+                link.textContent = heading.textContent;
+                listElement.appendChild(link);
+                mainContentToc.appendChild(listElement);
+            });
+        });
+    </script>
 
 
     </x-app-layout>

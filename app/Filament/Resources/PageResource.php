@@ -13,8 +13,12 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Resources\Concerns\Translatable;
-use App\Filament\BlockGroups\Properties;
-use App\Filament\BlockGroups\RichContent;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\MarkdownEditor;
+// kugleland/laravel-content-blocks
+use Kugleland\LaravelContentBlocks\Filament\BlockGroups\Properties;
+use Kugleland\LaravelContentBlocks\Filament\BlockGroups\RichContent;
 
 class PageResource extends Resource
 {
@@ -25,9 +29,24 @@ class PageResource extends Resource
 
     public static function form(Form $form): Form
     {
+
+        #dd($form->getLivewire()->getActiveLocale);
+
         return $form
             ->schema([
                 ...Properties::make($form),
+                MarkdownEditor::make('intro')->nullable(),
+                Forms\Components\Actions::make([
+                        Forms\Components\Actions\Action::make('Translate intro')
+                        ->action(function (Forms\Get $get, Forms\Set $set, $livewire) {
+                            $language = $livewire->activeLocale == 'en' ? 'english' : 'danish';
+                            $oppositeLocale = $livewire->activeLocale == 'en' ? 'da' : 'en';
+                            $page = Page::find($get('id'));
+                            $translation = $page->translateText($page->getTranslation('intro', $oppositeLocale), $language);
+                            $set('intro', $translation);
+                        }),
+                    ]),
+                //TextInput::make('description')->nullable(),
                 RichContent::builder($form)->columnSpanFull(),
             ]);
     }

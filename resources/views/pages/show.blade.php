@@ -12,17 +12,14 @@
     @endif
 
     @if ($page->slug !== 'home')
-        <div class="bg-white py-24 sm:py-32 dark:bg-neutral-900 -mx-8">
+        <div class="bg-white py-24 sm:py-24 dark:bg-neutral-900 -mx-8">
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
                 <div class="mx-auto max-w-2xl lg:mx-0">
                     <h2 class="text-5xl  tracking-tight text-gray-900 dark:text-white sm:text-7xl font-semibold ">
                         {{ $page->title }}</h2>
-                    <p class="mt-8 text-pretty text-lg font-medium text-gray-500 dark:text-neutral-400 sm:text-xl/8">Anim
-                        aute id magna aliqua
-                        ad
-                        ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam
-                        occaecat
-                        fugiat.</p>
+                    <div class="mt-8 prose dark:prose-invert">
+                        <x-markdown>{!! $page->intro !!}</x-markdown>
+                    </div>
                 </div>
             </div>
         </div>
@@ -36,10 +33,7 @@
 
             @foreach ($page->content as $key => $blockComponent)
                 <div class="py-1 w-full bg-neutral-50 dark:bg-neutral-900">
-                    {{-- <div>
-                        {{ $blockComponent['type'] }}
-                    </div> --}}
-                    <x-dynamic-component :component="'blocks.' . $blockComponent['type']" :info="$blockComponent" />
+                    <x-kugleland-content-block :component="'blocks.' . $blockComponent['type']" :info="$blockComponent" />
                 </div>
             @endforeach
 

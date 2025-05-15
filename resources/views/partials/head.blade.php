@@ -41,5 +41,6 @@
         "https://chimpstatic.com/mcjs-connected/js/users/33e76fa0991429adca787cbe3/04fe33d0b371e0154ba1853d6.js");
 </script>
 
+
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 @fluxAppearance

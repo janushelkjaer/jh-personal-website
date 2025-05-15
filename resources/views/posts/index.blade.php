@@ -38,8 +38,9 @@
                 <h2 class="text-5xl font-semibold tracking-tight text-gray-900 dark:text-white sm:text-7xl">
                     {{ $category->title ?? 'Blog' }}
                 </h2>
-                <p class="mt-8 text-pretty text-lg font-medium text-gray-500 dark:text-neutral-400 sm:text-xl/8">
-                    {{ $category->description ?? 'I write about app development, marketing, tech tools and AI.' }}</p>
+                <div class="mt-8 prose dark:prose-invert">
+                    {!! $category->description ?? 'I write about app development, marketing, tech tools and AI.' !!}
+                </div>
             </div>
         </div>
     </div>
@@ -73,7 +74,6 @@
             </div>
             <div class="col-span-3">
                 @if ($posts->count() > 0)
-
                     <div class="grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 ">
                         @foreach ($posts as $post)
                             <x-blog-post-card :post="$post" />

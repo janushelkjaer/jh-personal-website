@@ -13,9 +13,11 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Resources\Concerns\Translatable;
-use App\Filament\BlockGroups\Properties;
-use App\Filament\BlockGroups\RichContent;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+
+// kugleland/laravel-content-blocks
+use Kugleland\LaravelContentBlocks\Filament\BlockGroups\Properties;
+use Kugleland\LaravelContentBlocks\Filament\BlockGroups\RichContent;
 
 class CategoryResource extends Resource
 {

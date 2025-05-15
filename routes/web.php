@@ -43,6 +43,7 @@ Route::group(
         Route::get('blog/{post}', [PostController::class, 'show'])->name('posts.show');
         Route::get('/{any?}', [PageController::class, 'show'])->where('any', '.*')->name('pages.show');
 
+       #Route::contentBlocks();
 
     }
 );

@@ -12,6 +12,7 @@
         "filament/filament": "^3.3",
         "filament/spatie-laravel-media-library-plugin": "^3.2",
         "filament/spatie-laravel-translatable-plugin": "^3.2",
+        "kugleland/laravel-content-blocks": "dev-main",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
         "livewire/flux": "^2.1.1",
@@ -94,6 +95,10 @@
         "flux-pro": {
             "type": "composer",
             "url": "https://composer.fluxui.dev"
-        }
+        },
+        "laravel-content-blocks": {
+            "type": "vcs",
+            "url": "https://github.com/kugleland/laravel-content-blocks.git"
+        }        
     }
 }
