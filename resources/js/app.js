@@ -1,14 +1,3 @@
-import PhotoSwipeLightbox from 'photoswipe/lightbox';
-import 'photoswipe/style.css';
-
-const lightbox = new PhotoSwipeLightbox({
-  gallery: '#gallery',
-  children: 'a',
-  // initialZoomLevel: 'fit',
-  pswpModule: () => import('photoswipe')
-});
-lightbox.init();
-
 document.addEventListener('DOMContentLoaded', function() {
     let codeBlocks = document.querySelectorAll('pre.shiki');
     codeBlocks.forEach(function(block) {
